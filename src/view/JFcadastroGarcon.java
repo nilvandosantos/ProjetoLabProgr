@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
@@ -13,10 +14,18 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.UIManager;
 
+import codigo.Garcom;
+
+import control.CadGarcon;
+import control.Validacao;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
 public class JFcadastroGarcon extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField textFieldNome;
 
 	/**
 	 * Launch the application.
@@ -48,22 +57,53 @@ public class JFcadastroGarcon extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel lblNome = new JLabel("Nome: ");
 		lblNome.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNome.setBounds(26, 27, 46, 14);
 		contentPane.add(lblNome);
-		
-		textField = new JTextField();
-		textField.setBounds(76, 24, 331, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
-		
+
+		textFieldNome = new JTextField();
+		textFieldNome.setBounds(76, 24, 331, 20);
+		contentPane.add(textFieldNome);
+		textFieldNome.setColumns(10);
+
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnSalvarActionPerformed(arg0);
+			}
+
+			private void btnSalvarActionPerformed(ActionEvent arg0) {
+				Garcom novo = new Garcom(textFieldNome.getText());
+				CadGarcon cadastro = new CadGarcon();
+				Validacao valida = new Validacao();
+				
+				if (valida.valida(textFieldNome.getText()) == true) {
+					cadastro.iniciarGarcom();
+					cadastro.adicionaGarcom(novo);
+					cadastro.gravarGarcom();
+					dispose();
+				} else {
+					JOptionPane.showMessageDialog(null,
+							"Preenchimento Obrigatorio");
+				}
+			}
+		});
+
 		btnSalvar.setBounds(110, 72, 110, 23);
 		contentPane.add(btnSalvar);
-		
+
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				btnCancelarActionPerformed(arg0);
+			}
+
+			private void btnCancelarActionPerformed(ActionEvent arg0) {
+				dispose();
+			}
+		});
 		btnCancelar.setBounds(261, 72, 110, 23);
 		contentPane.add(btnCancelar);
 	}
