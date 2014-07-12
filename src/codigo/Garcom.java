@@ -1,10 +1,18 @@
-
- /* CLASSE GARCOM
- */
 package codigo;
 
 import java.text.*;
-
+/**
+ * Esta classe tem como objetivo armazenar os dados do funcionario garçom,tais dados estão
+ * contem as suas respectivas caracteristicas como a sua gorjeta atraves de um codigo que será gerado apos 
+ * concluir o cadastro,nome do garçom e o total de gorjetas que o mesmo irá receber.
+ * 
+ * @author Marcos Lucas,Nayara,Nilvando.
+ * 
+ * @version 1.0
+ *  
+ *  
+ *
+ */
 public class Garcom {
 
     private String nome;
@@ -13,7 +21,7 @@ public class Garcom {
     private double totalGorjeta;
     private static int codigoDeTodosOsGarcons = 1000;
 
-    //Construtor
+    //Construtor cadastrar o garçon
     public Garcom(String nome) {
         this.nome = nome;
         this.codigo = codigoDeTodosOsGarcons;
@@ -40,6 +48,10 @@ public class Garcom {
         totalGorjeta = 0;
     }
 
+    /**
+     * Metodo para retorno do codigo do garçom
+     * @return int codigo.
+     */
     public int getCodigo() {
         return codigo;
     }
@@ -47,7 +59,11 @@ public class Garcom {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }  
-
+/**
+ * Metodo para retorno da gorjeta do garçom apos o encerramento do pedido 
+ * de cada mesa que o mesmo atender.
+ * @return double gorjeta.
+ */
     public double getGorjeta() {
         return gorjeta;
     }
@@ -55,7 +71,10 @@ public class Garcom {
     public void setGorjeta(double gorjeta) {
         this.gorjeta = gorjeta;
     }
-
+    /**
+     * Metodo para retorno do nome  do garçom 
+     * @return String nome.
+     */
     public String getNome() {
         return nome;
     }
@@ -63,7 +82,10 @@ public class Garcom {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
+    /**
+     * Metodo para retorno da gorjeta do garçom apos o encerramento do caixa
+     * @return double Totalgorjeta.
+     */
     public double getTotalGorjeta() {
         return totalGorjeta;
     }
@@ -71,17 +93,22 @@ public class Garcom {
     public void setTotalGorjeta(double gorjeta) {
         this.totalGorjeta = totalGorjeta + gorjeta;
     }
-
-    //metodo que calcula a gorjeta do garçom
-    //(10% do valor da comanda) e o total de gorjeta do garçom
+/**
+ * Este metodo calcula tanto o parcial da gorjeta do garçom como o total da mesma,tal valor 
+ * é equivalente a 10% do pedido.
+ * @param valor double- valor retirado do pedido de cada mesa 
+ * @return double calc_gorjeta.
+ */
+   
     public double calculaGorjeta(double valor) {
         double calc_gorjeta = valor * 0.1;
         totalGorjeta = totalGorjeta + calc_gorjeta;
         return calc_gorjeta;
     }
-
-    //metodo para imprimir informações relativas ao garçom,
-    //com a gorjeta formatada para 2 casas decimais
+/**
+ * Este metodo  imprimi informações relativas ao garçom,
+ *  com a gorjeta formatada para 2 casas decimais
+ */
     public String toString() {
         DecimalFormat d = new DecimalFormat("0.00");
         return "Nome: " + nome + "\nCódigo: " + codigo + "\nTotal de gorjeta acumulada: " + d.format(totalGorjeta);

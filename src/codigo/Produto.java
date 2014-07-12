@@ -1,9 +1,14 @@
-/*
- * CLASSE PRODUTO
- * Tests
- */
-package codigo;
 
+package codigo;
+/**
+ * Esta classe tem como objetivo armazenar os dados do produto, como seu codigo,descrição,preço
+ * nome e quantidade vendida.
+ * 
+ * @author Marcos Lucas,Nayara,Nilvando.
+ *  
+ * @version 1.0
+ *
+ */
 public class Produto {
 
     private String nome;
@@ -13,7 +18,7 @@ public class Produto {
     private static int codigoDeTodosOsProdutos = 1;
     private double preco;
 
-    //Construtor
+    //Construtor para cadastro do produto
     public Produto(String nome, double preco, String descricao) {
 
         this.nome = nome;
@@ -33,7 +38,7 @@ public class Produto {
         codigoDeTodosOsProdutos = codigo + 1;
     }
 
-    //Construtor utiliza para criar um novo objeto produto
+    //Construtor utilizado para criar um novo objeto produto
     //para ser feita a consulta
     public Produto() {
 
@@ -43,7 +48,10 @@ public class Produto {
         this.codigo = 0;
 
     }
-
+/**
+ *  Metodo utilizado para retornar o codigo do produto.
+ * @return int codigo
+ */
     public int getCodigo() {
         return codigo;
     }
@@ -51,7 +59,10 @@ public class Produto {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-
+/**
+ * Metodo utilizado para retornar descrição do produto (tipo).
+ * @return String descrição.
+ */
     public String getDescricao() {
         return descricao;
     }
@@ -59,7 +70,10 @@ public class Produto {
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
+/**
+ *  Metodo utilizado para retornar o nome do produto.
+ *  @return String nome.
+ */
     public String getNome() {
         return nome;
     }
@@ -67,7 +81,11 @@ public class Produto {
     public void setNome(String nome) {
         this.nome = nome;
     }
-
+/**
+ *  Metodo utilizado para retornar o preço do produto.
+ *  @return double Preco
+ * 
+ */
     public double getPreco() {
         return preco;
     }
@@ -75,7 +93,10 @@ public class Produto {
     public void setPreco(double preco) {
         this.preco = preco;
     }
-
+/**
+ *  Metodo utilizado para retornar a quantidade que o respectivo produto foi vendido.
+ *  @return int  QuantidadeVendida.
+ */
     public int getQuantidadeVendida() {
         return quantidadeVendida;
     }
