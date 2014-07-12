@@ -139,8 +139,7 @@ public class JFtelaMenu extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(
-				"C:\\Users\\NRSS\\Pictures\\images.jpg"));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\NRSS\\git\\ProjetoLabProgr\\src\\view\\images.jpg"));
 		lblNewLabel.setBounds(255, 71, 206, 287);
 		contentPane.add(lblNewLabel);
 	}
