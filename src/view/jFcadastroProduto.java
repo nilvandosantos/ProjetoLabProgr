@@ -50,6 +50,13 @@ public class jFcadastroProduto extends JFrame {
 	 * Create the frame.
 	 */
 	public jFcadastroProduto() {
+		JLabel lblNome = new JLabel("Nome:");
+		JLabel lblPreo = new JLabel("Pre\u00E7o:");
+		JLabel lblDescrio = new JLabel("Descri\u00E7\u00E3o:");
+		
+		JButton btnSalvar = new JButton("Salvar");
+		JButton btnCancelar = new JButton("Cancelar");
+		
 		setTitle("Cadastro De Produtos");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -58,8 +65,9 @@ public class jFcadastroProduto extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		JLabel lblNome = new JLabel("Nome:");
+		getRootPane().setDefaultButton(btnSalvar);
+		
+		
 		lblNome.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		lblNome.setBounds(10, 37, 46, 14);
 		contentPane.add(lblNome);
@@ -69,7 +77,7 @@ public class jFcadastroProduto extends JFrame {
 		contentPane.add(textFieldNome);
 		textFieldNome.setColumns(10);
 
-		JLabel lblPreo = new JLabel("Pre\u00E7o:");
+		
 		lblPreo.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		lblPreo.setBounds(10, 88, 46, 14);
 		contentPane.add(lblPreo);
@@ -79,12 +87,10 @@ public class jFcadastroProduto extends JFrame {
 		contentPane.add(textFieldPreco);
 		textFieldPreco.setColumns(10);
 
-		JLabel lblDescrio = new JLabel("Descri\u00E7\u00E3o:");
 		lblDescrio.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblDescrio.setBounds(10, 132, 70, 14);
 		contentPane.add(lblDescrio);
-
-		JButton btnSalvar = new JButton("Salvar");
+		
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnSalvarActionPerformed(arg0);
@@ -107,7 +113,6 @@ public class jFcadastroProduto extends JFrame {
 		btnSalvar.setBounds(84, 210, 114, 23);
 		contentPane.add(btnSalvar);
 
-		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnCancelarActionPerformed(arg0);

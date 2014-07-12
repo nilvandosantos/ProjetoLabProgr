@@ -14,6 +14,8 @@ import javax.swing.JButton;
 import java.awt.Color;
 import javax.swing.UIManager;
 
+import com.sun.glass.events.KeyEvent;
+
 import codigo.Garcom;
 
 import control.CadGarcon;
@@ -21,6 +23,7 @@ import control.Validacao;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
 
 public class JFcadastroGarcon extends JFrame {
 
@@ -47,6 +50,11 @@ public class JFcadastroGarcon extends JFrame {
 	 * Create the frame.
 	 */
 	public JFcadastroGarcon() {
+		
+		JLabel lblNome = new JLabel("Nome: ");
+		JButton btnSalvar = new JButton("Salvar");
+		JButton btnCancelar = new JButton("Cancelar");
+		
 		setResizable(false);
 		setBackground(new Color(255, 255, 255));
 		setTitle("Cadastro Garçon");
@@ -57,8 +65,8 @@ public class JFcadastroGarcon extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
-		JLabel lblNome = new JLabel("Nome: ");
+		getRootPane().setDefaultButton(btnSalvar); 
+		
 		lblNome.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNome.setBounds(26, 27, 46, 14);
 		contentPane.add(lblNome);
@@ -67,8 +75,7 @@ public class JFcadastroGarcon extends JFrame {
 		textFieldNome.setBounds(76, 24, 331, 20);
 		contentPane.add(textFieldNome);
 		textFieldNome.setColumns(10);
-
-		JButton btnSalvar = new JButton("Salvar");
+		
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnSalvarActionPerformed(arg0);
@@ -81,7 +88,7 @@ public class JFcadastroGarcon extends JFrame {
 				Validacao valida = new Validacao();
 
 				if (valida.valida(nome) == true) {
-					//cadastro.iniciarGarcom();
+					// cadastro.iniciarGarcom();
 					cadastro.adicionaGarcom(novo);
 					cadastro.gravarGarcom();
 					JOptionPane.showMessageDialog(null,
@@ -100,7 +107,7 @@ public class JFcadastroGarcon extends JFrame {
 		btnSalvar.setBounds(110, 72, 110, 23);
 		contentPane.add(btnSalvar);
 
-		JButton btnCancelar = new JButton("Cancelar");
+		
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnCancelarActionPerformed(arg0);
