@@ -19,30 +19,32 @@ public class CadGarcon {
 	private DataOutputStream outputGarcom;
 	private DataInputStream inputGarcom;
 	private boolean moreRecordsGarcom = true;
-	
-	public CadGarcon(){
+
+	public CadGarcon() {
 		iniciarGarcom();
 	}
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 	}
 
-	/*public void abrirArquivo() {
-		File arquivo = new File("Garcons.txt");
-		try {
-			if (!arquivo.exists()) {
-				// cria um arquivo (vazio)
-				arquivo.createNewFile();
-				JOptionPane.showMessageDialog(null,
-						"Arquivo criado com sucesso!");
-			}
+	// verifica se já existe um garçom com o mesmo nome cadastrado no sistema.
+	public boolean isExistGarcon(String nome) {
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		boolean isExist = false;
+
+		// Verifica se o campo Nome do Garçom está preenchido
+
+		for (Garcom cadastrado : garcons) {
+
+			if (cadastrado.getNome().equalsIgnoreCase(nome)) {
+				isExist = true;
+			}
 		}
-	}*/
+
+		return isExist;
+	}
 
 	public void iniciarGarcom() {
 
@@ -62,7 +64,8 @@ public class CadGarcon {
 
 		// Ler o arquivo garcom
 		try {
-			inputGarcom = new DataInputStream(new FileInputStream("Garcons.txt"));
+			inputGarcom = new DataInputStream(
+					new FileInputStream("Garcons.txt"));
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null,
 					"Falha na Abertura do Arquivo para Leitura", "Erro",
@@ -120,7 +123,8 @@ public class CadGarcon {
 		try {
 			outputGarcom = new DataOutputStream(new FileOutputStream(
 					"Garcons.txt", false));
-		//	JOptionPane.showMessageDialog(null,	"Garçon salvo com sucesso!"+" Nome: "+  +" \n\nCodigo: " );
+			// JOptionPane.showMessageDialog(null,
+			// "Garçon salvo com sucesso!"+" Nome: "+ +" \n\nCodigo: " );
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null,
 					"Falha na Abertura do Arquivo para Gravação", "Erro",

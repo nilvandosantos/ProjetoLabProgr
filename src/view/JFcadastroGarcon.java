@@ -1,29 +1,23 @@
 package view;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
 import javax.swing.JTextField;
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.Color;
 import javax.swing.UIManager;
-
-import com.sun.glass.events.KeyEvent;
+import javax.swing.border.EmptyBorder;
 
 import codigo.Garcom;
-
 import control.CadGarcon;
 import control.Validacao;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyAdapter;
 
 public class JFcadastroGarcon extends JFrame {
 
@@ -50,11 +44,11 @@ public class JFcadastroGarcon extends JFrame {
 	 * Create the frame.
 	 */
 	public JFcadastroGarcon() {
-		
+
 		JLabel lblNome = new JLabel("Nome: ");
 		JButton btnSalvar = new JButton("Salvar");
 		JButton btnCancelar = new JButton("Cancelar");
-		
+
 		setResizable(false);
 		setBackground(new Color(255, 255, 255));
 		setTitle("Cadastro Garçon");
@@ -65,8 +59,8 @@ public class JFcadastroGarcon extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		getRootPane().setDefaultButton(btnSalvar); 
-		
+		getRootPane().setDefaultButton(btnSalvar);
+
 		lblNome.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNome.setBounds(26, 27, 46, 14);
 		contentPane.add(lblNome);
@@ -75,7 +69,7 @@ public class JFcadastroGarcon extends JFrame {
 		textFieldNome.setBounds(76, 24, 331, 20);
 		contentPane.add(textFieldNome);
 		textFieldNome.setColumns(10);
-		
+
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnSalvarActionPerformed(arg0);
@@ -89,14 +83,22 @@ public class JFcadastroGarcon extends JFrame {
 
 				if (valida.valida(nome) == true) {
 					// cadastro.iniciarGarcom();
-					cadastro.adicionaGarcom(novo);
-					cadastro.gravarGarcom();
-					JOptionPane.showMessageDialog(null,
-							"Garçom cadastrado com sucesso!\n\nNome: " + nome
-									+ "\nCódigo: " + novo.getCodigo()
-									+ "Sucesso");
+					if (!cadastro.isExistGarcon(nome)) {
 
-					dispose();
+						cadastro.adicionaGarcom(novo);
+						cadastro.gravarGarcom();
+						JOptionPane.showMessageDialog(
+								null,
+								"Garçom cadastrado com sucesso!\n\nNome: "
+										+ nome + "\nCódigo: "
+										+ novo.getCodigo() + "Sucesso");
+
+						dispose();
+					}else{
+						 JOptionPane.showMessageDialog(JFcadastroGarcon.this, "Já possui um cadastro com o nome " + nome + "!\nFavor digite um nome diferente.");
+		                 textFieldNome.setText("");
+					}
+						
 				} else {
 					JOptionPane.showMessageDialog(null,
 							"Preenchimento Obrigatorio");
@@ -107,7 +109,6 @@ public class JFcadastroGarcon extends JFrame {
 		btnSalvar.setBounds(110, 72, 110, 23);
 		contentPane.add(btnSalvar);
 
-		
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnCancelarActionPerformed(arg0);
