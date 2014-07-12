@@ -11,28 +11,24 @@ import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
-import codigo.Caixa;
 import codigo.Garcom;
-import codigo.Produto;
 
 public class CadGarcon {
 
-	private static LinkedList<Produto> produtos = new LinkedList<Produto>();
 	private static LinkedList<Garcom> garcons = new LinkedList<Garcom>();
-	private static LinkedList<Caixa> caixas = new LinkedList<Caixa>();
 	private DataOutputStream outputGarcom;
 	private DataInputStream inputGarcom;
 	private boolean moreRecordsGarcom = true;
-	private DataOutputStream outputProduto;
-	private DataInputStream inputProduto;
-	private boolean moreRecordsProduto = true;
-
+	
+	public CadGarcon(){
+		iniciarGarcom();
+	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 	}
 
-	public void abrirArquivo() {
+	/*public void abrirArquivo() {
 		File arquivo = new File("Garcons.txt");
 		try {
 			if (!arquivo.exists()) {
@@ -46,7 +42,7 @@ public class CadGarcon {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	}*/
 
 	public void iniciarGarcom() {
 
@@ -91,6 +87,7 @@ public class CadGarcon {
 				Garcom temporario = new Garcom(nome, codigo, gorjeta,
 						totalGorjeta);
 				adicionaGarcom(temporario);
+				System.out.println(temporario);
 			}
 		} catch (EOFException eof) {
 			moreRecordsGarcom = false;
@@ -123,6 +120,7 @@ public class CadGarcon {
 		try {
 			outputGarcom = new DataOutputStream(new FileOutputStream(
 					"Garcons.txt", false));
+		//	JOptionPane.showMessageDialog(null,	"Garçon salvo com sucesso!"+" Nome: "+  +" \n\nCodigo: " );
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null,
 					"Falha na Abertura do Arquivo para Gravação", "Erro",
@@ -130,7 +128,7 @@ public class CadGarcon {
 			System.exit(1);
 		}
 
-		// Carrega toda a coleÃ§Ã£o no arquivo
+		// Carrega toda a coleção no arquivo
 		try {
 			for (Garcom a : garcons) {
 				outputGarcom.writeUTF(a.getNome());

@@ -50,6 +50,7 @@ public class jFcadastroProduto extends JFrame {
 	 * Create the frame.
 	 */
 	public jFcadastroProduto() {
+		setTitle("Cadastro De Produtos");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -90,8 +91,8 @@ public class jFcadastroProduto extends JFrame {
 			}
 
 			private void btnSalvarActionPerformed(ActionEvent arg0) {
-				Produto novo = new Produto();
 				CadProduto cadastro = new CadProduto();
+				Produto novo = new Produto(textFieldNome.getText(),Double.parseDouble(textFieldPreco.getText()),textFieldDescrio.getText());
 				Validacao valida = new Validacao();
 				if (valida.valida(textFieldNome.getText(),textFieldPreco.getText(),textFieldDescrio.getText())==true) {
 					cadastro.iniciarProduto();

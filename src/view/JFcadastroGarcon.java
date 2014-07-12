@@ -49,7 +49,7 @@ public class JFcadastroGarcon extends JFrame {
 	public JFcadastroGarcon() {
 		setResizable(false);
 		setBackground(new Color(255, 255, 255));
-		setTitle("Cadastro Gar\u00E7on");
+		setTitle("Cadastro Garçon");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 150);
 		contentPane = new JPanel();
@@ -75,14 +75,20 @@ public class JFcadastroGarcon extends JFrame {
 			}
 
 			private void btnSalvarActionPerformed(ActionEvent arg0) {
-				Garcom novo = new Garcom(textFieldNome.getText());
+				String nome = textFieldNome.getText();
 				CadGarcon cadastro = new CadGarcon();
+				Garcom novo = new Garcom(nome);
 				Validacao valida = new Validacao();
-				
-				if (valida.valida(textFieldNome.getText()) == true) {
-					cadastro.iniciarGarcom();
+
+				if (valida.valida(nome) == true) {
+					//cadastro.iniciarGarcom();
 					cadastro.adicionaGarcom(novo);
 					cadastro.gravarGarcom();
+					JOptionPane.showMessageDialog(null,
+							"Garçom cadastrado com sucesso!\n\nNome: " + nome
+									+ "\nCódigo: " + novo.getCodigo()
+									+ "Sucesso");
+
 					dispose();
 				} else {
 					JOptionPane.showMessageDialog(null,
