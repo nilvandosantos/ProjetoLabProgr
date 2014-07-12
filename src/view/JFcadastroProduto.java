@@ -23,7 +23,7 @@ import codigo.Produto;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class jFcadastroProduto extends JFrame {
+public class JFcadastroProduto extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldNome;
@@ -37,7 +37,7 @@ public class jFcadastroProduto extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					jFcadastroProduto frame = new jFcadastroProduto();
+					JFcadastroProduto frame = new JFcadastroProduto();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +49,7 @@ public class jFcadastroProduto extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public jFcadastroProduto() {
+	public JFcadastroProduto() {
 		JLabel lblNome = new JLabel("Nome:");
 		JLabel lblPreo = new JLabel("Pre\u00E7o:");
 		JLabel lblDescrio = new JLabel("Descri\u00E7\u00E3o:");
@@ -113,7 +113,7 @@ public class jFcadastroProduto extends JFrame {
 						cadastro.gravarProduto();
 						dispose();
 					}else{
-						JOptionPane.showMessageDialog(jFcadastroProduto.this, "Já possui um cadastro com o nome " + nome + "!\nFavor digite um nome diferente.");
+						JOptionPane.showMessageDialog(JFcadastroProduto.this, "Já possui um cadastro com o nome " + nome + "!\nFavor digite um nome diferente.");
 		                 textFieldNome.setText("");
 		                 textFieldPreco.setText("");
 		                 textFieldDescrio.setText("");

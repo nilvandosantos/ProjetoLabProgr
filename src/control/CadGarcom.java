@@ -13,14 +13,14 @@ import javax.swing.JOptionPane;
 
 import codigo.Garcom;
 
-public class CadGarcon {
+public class CadGarcom {
 
 	private static LinkedList<Garcom> garcons = new LinkedList<Garcom>();
 	private DataOutputStream outputGarcom;
 	private DataInputStream inputGarcom;
 	private boolean moreRecordsGarcom = true;
 
-	public CadGarcon() {
+	public CadGarcom() {
 		iniciarGarcom();
 	}
 

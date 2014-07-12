@@ -16,10 +16,10 @@ import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
 import codigo.Garcom;
-import control.CadGarcon;
+import control.CadGarcom;
 import control.Validacao;
 
-public class JFcadastroGarcon extends JFrame {
+public class JFcadastroGarcom extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldNome;
@@ -31,7 +31,7 @@ public class JFcadastroGarcon extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JFcadastroGarcon frame = new JFcadastroGarcon();
+					JFcadastroGarcom frame = new JFcadastroGarcom();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +43,7 @@ public class JFcadastroGarcon extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public JFcadastroGarcon() {
+	public JFcadastroGarcom() {
 
 		JLabel lblNome = new JLabel("Nome: ");
 		JButton btnSalvar = new JButton("Salvar");
@@ -77,7 +77,7 @@ public class JFcadastroGarcon extends JFrame {
 
 			private void btnSalvarActionPerformed(ActionEvent arg0) {
 				String nome = textFieldNome.getText();
-				CadGarcon cadastro = new CadGarcon();
+				CadGarcom cadastro = new CadGarcom();
 				Garcom novo = new Garcom(nome);
 				Validacao valida = new Validacao();
 
@@ -95,7 +95,7 @@ public class JFcadastroGarcon extends JFrame {
 
 						dispose();
 					}else{
-						 JOptionPane.showMessageDialog(JFcadastroGarcon.this, "Já possui um cadastro com o nome " + nome + "!\nFavor digite um nome diferente.");
+						 JOptionPane.showMessageDialog(JFcadastroGarcom.this, "Já possui um cadastro com o nome " + nome + "!\nFavor digite um nome diferente.");
 		                 textFieldNome.setText("");
 					}
 						

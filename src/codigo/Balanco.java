@@ -19,11 +19,11 @@ public class Balanco {
     }
 
     //Método para varrer todas as comandas do caixa e registrar o movimento total
-    public static String varreComandas(LinkedList<Comanda> com) {
+    public static String varreComandas(LinkedList<Pedido> com) {
         String movimento = "";
         DecimalFormat d = new DecimalFormat("0.00");
 
-        for (Comanda c : com) {
+        for (Pedido c : com) {
             movimento = movimento + "Código da comanda: " + c.getNumero();
             movimento = movimento + " | Dia: " + c.getData();
             movimento = movimento + " | Hora: " + c.getHora();

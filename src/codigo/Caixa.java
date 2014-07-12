@@ -17,7 +17,7 @@ public class Caixa {
 
     private double valor_inicial;
     private double total_caixa;
-    private LinkedList<Comanda> comandas = new LinkedList<Comanda>();
+    private LinkedList<Pedido> comandas = new LinkedList<Pedido>();
     private String data;
 
     //Construtor
@@ -26,29 +26,29 @@ public class Caixa {
         this.data = data;
     }
 
-    public LinkedList<Comanda> getComandas() {
+    public LinkedList<Pedido> getComandas() {
         return this.comandas;
     }
 
     //Método para adicionar uma LinkedList completa a classe caixa
-    public void setComandas(LinkedList<Comanda> comandas) {
+    public void setComandas(LinkedList<Pedido> comandas) {
         this.comandas = comandas;
     }
 
     //Metodo que retorna todas comandas do caixa
-    public LinkedList<Comanda> retornaComandas() {
+    public LinkedList<Pedido> retornaComandas() {
         return comandas;
     }
 
     //metodo que retorna um comanda a partir do codigo
-    public Comanda retornaUmaComanda(int indice_comanda) {
+    public Pedido retornaUmaComanda(int indice_comanda) {
 
         return comandas.get(indice_comanda);
 
     }
 
     //Método para adiconar uma comanda na linkedlist da classe Caixa
-    public void adicionaComanda(Comanda c) {
+    public void adicionaComanda(Pedido c) {
         comandas.add(c);
     }
 

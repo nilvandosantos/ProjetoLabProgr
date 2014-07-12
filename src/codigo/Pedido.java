@@ -18,7 +18,7 @@ package codigo;
 
 import java.util.*;
 
-public class Comanda {
+public class Pedido {
 
     private static int numeroTodos = 1;
     private boolean comanda_aberta = false;
@@ -30,7 +30,7 @@ public class Comanda {
     private String data;
     private String hora;
 
-    public Comanda(Garcom garcons, String data) {//Construtor
+    public Pedido(Garcom garcons, String data) {//Construtor
         numero = numeroTodos;
         numeroTodos++;
         this.garcons = garcons;

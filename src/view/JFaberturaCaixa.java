@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class JFAberturaCaixa extends JFrame {
+public class JFaberturaCaixa extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldValor;
@@ -25,7 +25,7 @@ public class JFAberturaCaixa extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JFAberturaCaixa frame = new JFAberturaCaixa();
+					JFaberturaCaixa frame = new JFaberturaCaixa();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +37,7 @@ public class JFAberturaCaixa extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public JFAberturaCaixa() {
+	public JFaberturaCaixa() {
 		setResizable(false);
 		setTitle("Abertura Do Caixa");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

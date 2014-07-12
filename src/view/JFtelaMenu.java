@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Window.Type;
 
-public class JFTelaMenu extends JFrame {
+public class JFtelaMenu extends JFrame {
 
 	private JPanel contentPane;
 
@@ -29,7 +29,7 @@ public class JFTelaMenu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					JFTelaMenu frame = new JFTelaMenu();
+					JFtelaMenu frame = new JFtelaMenu();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +41,7 @@ public class JFTelaMenu extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public JFTelaMenu() {
+	public JFtelaMenu() {
 		setResizable(false);
 		setTitle("Menu Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,7 +56,7 @@ public class JFTelaMenu extends JFrame {
 		JMenuItem mntmAberturaDoCaixa = new JMenuItem("Abertura Do Caixa");
 		mntmAberturaDoCaixa.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new JFAberturaCaixa().setVisible(true);
+				new JFaberturaCaixa().setVisible(true);
 			}
 		});
 		mnCaixa.add(mntmAberturaDoCaixa);
@@ -70,7 +70,7 @@ public class JFTelaMenu extends JFrame {
 		JMenuItem mntmGarom = new JMenuItem("Gar\u00E7om");
 		mntmGarom.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new JFcadastroGarcon().setVisible(true);
+				new JFcadastroGarcom().setVisible(true);
 			}
 		});
 		mnCadastro.add(mntmGarom);
@@ -78,7 +78,7 @@ public class JFTelaMenu extends JFrame {
 		JMenuItem mntmProdutos = new JMenuItem("Produtos");
 		mntmProdutos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new jFcadastroProduto().setVisible(true);
+				new JFcadastroProduto().setVisible(true);
 			}
 		});
 		mnCadastro.add(mntmProdutos);
