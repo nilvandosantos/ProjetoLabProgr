@@ -22,7 +22,13 @@ import codigo.Produto;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**
+ * Esta classe tem como objetivo criar a interface grafica para cadastro o produto.
+ *. 
+ *@author Marco Lucas,Nayara,Nilvando.
+ *@version 1.0
+ *  
+ */
 public class JFcadastroProduto extends JFrame {
 
 	private JPanel contentPane;
@@ -30,9 +36,7 @@ public class JFcadastroProduto extends JFrame {
 	private JTextField textFieldPreco;
 	private JTextField textFieldDescrio;
 
-	/**
-	 * Launch the application.
-	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -45,18 +49,8 @@ public class JFcadastroProduto extends JFrame {
 			}
 		});
 	}
-
-	/**
-	 * Create the frame.
-	 */
+	//METODO PARA CRIAÇÃO  DA TELA PRODUTO.
 	public JFcadastroProduto() {
-		JLabel lblNome = new JLabel("Nome:");
-		JLabel lblPreo = new JLabel("Pre\u00E7o:");
-		JLabel lblDescrio = new JLabel("Descri\u00E7\u00E3o:");
-
-		JButton btnSalvar = new JButton("Salvar");
-		JButton btnCancelar = new JButton("Cancelar");
-
 		setTitle("Cadastro De Produtos");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -65,8 +59,8 @@ public class JFcadastroProduto extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		getRootPane().setDefaultButton(btnSalvar);
 
+		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		lblNome.setBounds(10, 37, 46, 14);
 		contentPane.add(lblNome);
@@ -76,6 +70,7 @@ public class JFcadastroProduto extends JFrame {
 		contentPane.add(textFieldNome);
 		textFieldNome.setColumns(10);
 
+		JLabel lblPreo = new JLabel("Pre\u00E7o:");
 		lblPreo.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		lblPreo.setBounds(10, 88, 46, 14);
 		contentPane.add(lblPreo);
@@ -85,49 +80,39 @@ public class JFcadastroProduto extends JFrame {
 		contentPane.add(textFieldPreco);
 		textFieldPreco.setColumns(10);
 
+		JLabel lblDescrio = new JLabel("Descri\u00E7\u00E3o:");
 		lblDescrio.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblDescrio.setBounds(10, 132, 70, 14);
 		contentPane.add(lblDescrio);
 
+		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
+			//EVENTO DO BOTAO SALVAR
 			public void actionPerformed(ActionEvent arg0) {
 				btnSalvarActionPerformed(arg0);
 			}
 
 			private void btnSalvarActionPerformed(ActionEvent arg0) {
-				
-				String nome = textFieldNome.getText();
 				CadProduto cadastro = new CadProduto();
-				Produto novo = new Produto(textFieldNome.getText(), Double
-						.parseDouble(textFieldPreco.getText()),
-						textFieldDescrio.getText());
+				Produto novo = new Produto(textFieldNome.getText(),Double.parseDouble(textFieldPreco.getText()),textFieldDescrio.getText());
 				Validacao valida = new Validacao();
-
-				if (valida.valida(textFieldNome.getText(),
-						textFieldPreco.getText(), textFieldDescrio.getText()) == true) {
-
-					if (!cadastro.isExistProduto(nome)) {
-						
-						cadastro.iniciarProduto();
-						cadastro.adicionaProduto(novo);
-						cadastro.gravarProduto();
-						dispose();
-					}else{
-						JOptionPane.showMessageDialog(JFcadastroProduto.this, "Já possui um cadastro com o nome " + nome + "!\nFavor digite um nome diferente.");
-		                 textFieldNome.setText("");
-		                 textFieldPreco.setText("");
-		                 textFieldDescrio.setText("");
-					}
+	            //TODOS OS CAMPOS EM BRANCO DA TELA PREENCHIDOS,É CRIADO UM NOVO PRODUTO.
+				if (valida.valida(textFieldNome.getText(),textFieldPreco.getText(),textFieldDescrio.getText())==true) {
+					cadastro.iniciarProduto();
+					cadastro.adicionaProduto(novo);
+					cadastro.gravarProduto();
+					dispose();
 				} else {
-					JOptionPane.showMessageDialog(null,
-							"Preenchimento Obrigatorio");
+					JOptionPane.showMessageDialog(null, "Preenchimento Obrigatorio");
 				}
 			}
 		});
 		btnSalvar.setBounds(84, 210, 114, 23);
 		contentPane.add(btnSalvar);
 
+		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
+			//EVENTO DO BOTAO CANCELAR.
 			public void actionPerformed(ActionEvent arg0) {
 				btnCancelarActionPerformed(arg0);
 			}

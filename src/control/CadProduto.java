@@ -12,16 +12,34 @@ import javax.swing.JOptionPane;
 import codigo.Garcom;
 import codigo.Produto;
 
+/**
+ * Esta classe tem como objetivo cadastrar o Objeto Produto em sua respectiva
+ * lista.
+ * 
+ * @author Marcos Lucas,Nayara,Nilvando.
+ * 
+ * @version 1.0
+ * 
+ */
 public class CadProduto {
 	private static LinkedList<Produto> produtos = new LinkedList<Produto>();
 	private DataOutputStream outputProduto;
 	private DataInputStream inputProduto;
 	private boolean moreRecordsProduto = true;
 
-	public CadProduto(){
+	public CadProduto() {
 		iniciarProduto();
 	}
-	// verifica se já existe um produto com o mesmo nome cadastrado no sistema.
+
+	/**
+	 * Este metodo tem como função verificar se já existe um produto com o mesmo
+	 * nome cadastrado no sistema.
+	 * 
+	 * @param nome
+	 *            do produto.
+	 * @return boolean isExist.
+	 */
+
 	public boolean isExistProduto(String nome) {
 
 		boolean isExist = false;
@@ -36,22 +54,10 @@ public class CadProduto {
 		return isExist;
 	}
 
-	public void abrirArquivo() {
-		File arquivo = new File("Produtos.txt");
-		try {
-			if (!arquivo.exists()) {
-				// cria um arquivo (vazio)
-				arquivo.createNewFile();
-				JOptionPane.showMessageDialog(null,
-						"Arquivo criado com sucesso!");
-			}
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-
+	/**
+	 * Metodo tem como função abrir o arquivo do tipo TXT e cria-lo,caso o mesmo
+	 * ja tenha sido gerado ele apenas irá ler o arquivo e istanciará o objeto.
+	 */
 	public void iniciarProduto() {
 		File arquivo = new File("Produtos.txt");
 		try {
@@ -66,8 +72,10 @@ public class CadProduto {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		// Ler os produtos no arquivo
+		/*
+		 * Ler os produtos no arquivo se ocorrer algum erro durante a leitura
+		 * mensagem de erro sera apresentado
+		 */
 		try {
 			inputProduto = new DataInputStream(new FileInputStream(
 					"Produtos.txt"));
@@ -85,7 +93,7 @@ public class CadProduto {
 		int quantidadeVendida;
 		double preco;
 
-		// Carrega os produtos do arquivo para as coleções
+		// Carrega os produtos do arquivo para as listas.
 		try {
 			while (moreRecordsProduto) {
 				nome = inputProduto.readUTF();
@@ -97,9 +105,6 @@ public class CadProduto {
 				Produto temporario = new Produto(nome, descricao, codigo,
 						quantidadeVendida, preco);
 				adicionaProduto(temporario);
-				// linha de teste
-				// System.out.println(nome + descricao + codigo +
-				// quantidadeVendida + preco);
 			}
 		} catch (EOFException eof) {
 			moreRecordsProduto = false;
@@ -110,7 +115,7 @@ public class CadProduto {
 			System.exit(1);
 		}
 
-		// Fecha o objeto inputProdut
+		// Fecha o objeto Produto inputProdut
 		try {
 			inputProduto.close();
 		} catch (IOException e) {
@@ -122,13 +127,21 @@ public class CadProduto {
 
 	}
 
-	// Metodo para adicionar um objeto Produto a LinkedList "produtos"
+	/**
+	 * Metodo para adicionar um objeto Produto a LinkedList "produtos".
+	 * @param p Adicionar um produto.
+	 */
+	
 	public static void adicionaProduto(Produto p) {
 		produtos.add(p);
 	}
-
+	
+	/**
+	 * Metodo para abrir o arquivo e grava-lo,caso ocorra algum erro uma mensagem será retornada.
+	 * 
+	 */
 	public void gravarProduto() {
-		// Abre arquivo para gravar
+		
 		try {
 			outputProduto = new DataOutputStream(new FileOutputStream(
 					"Produtos.txt", false));
@@ -140,7 +153,7 @@ public class CadProduto {
 			System.exit(1);
 		}
 
-		// Escreve toda a coleção de produtos no arquivo
+		// Escreve toda a lista de produtos no arquivo TXT.
 		try {
 			for (Produto a : produtos) {
 				outputProduto.writeUTF(a.getNome());
@@ -156,7 +169,9 @@ public class CadProduto {
 			System.exit(1);
 		}
 
-		// Fecha os arquivos Output produto
+		/*
+		 * Fecha os arquivos Output garcom,caso ocorra algum erro uma mensagem será retornada.
+		 */
 		try {
 			outputProduto.flush();
 			outputProduto.close();

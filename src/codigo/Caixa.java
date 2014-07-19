@@ -1,23 +1,20 @@
-/*
- * CLASSE CAIXA
- *
- * A classe Caixa é responsável pelo controle monetário do restaurante.
- * Ela que vai realizar todas as tarefas referentes a balanço total e afins.
- *
- * ATRIBUTOS PRINCIPAIS
- * *VALOR INICIAL - Inicializa o caixa, determinando a quantidade inicial
- *  de dinheiro dentro do mesmo;
- * *COMANDAS - Array que armazena todas as comandas do dia.
- */
+
 package codigo;
 
 import java.util.*;
-
+/**
+ *  classe Caixa é responsável pelo controle monetário do restaurante.
+ * Ela que vai realizar todas as tarefas referentes a balanço total e afins.
+ *
+ * 
+ * @author Marco Lucas,Nayara,Nilvando.
+ *
+ */
 public class Caixa {
 
     private double valor_inicial;
     private double total_caixa;
-    private LinkedList<Pedido> comandas = new LinkedList<Pedido>();
+    private LinkedList<Pedido> pedidos = new LinkedList<Pedido>();
     private String data;
 
     //Construtor
@@ -27,29 +24,29 @@ public class Caixa {
     }
 
     public LinkedList<Pedido> getComandas() {
-        return this.comandas;
+        return this.pedidos;
     }
 
-    //Método para adicionar uma LinkedList completa a classe caixa
+    //Método para adicionar uma LinkedList completa a classe caixa.
     public void setComandas(LinkedList<Pedido> comandas) {
-        this.comandas = comandas;
+        this.pedidos = comandas;
     }
 
-    //Metodo que retorna todas comandas do caixa
+    //Metodo que retorna todos os pedidos do caixa.
     public LinkedList<Pedido> retornaComandas() {
-        return comandas;
+        return pedidos;
     }
 
-    //metodo que retorna um comanda a partir do codigo
+    //metodo que retorna um pedido a partir do codigo.
     public Pedido retornaUmaComanda(int indice_comanda) {
 
-        return comandas.get(indice_comanda);
+        return pedidos.get(indice_comanda);
 
     }
 
-    //Método para adiconar uma comanda na linkedlist da classe Caixa
+    //Método para adiconar um pedido na linkedlist da classe Caixa
     public void adicionaComanda(Pedido c) {
-        comandas.add(c);
+        pedidos.add(c);
     }
 
     public String getData() {
