@@ -1,9 +1,8 @@
 package codigo;
 
-import interfacegrafica.jFmenu;
-
+import control.*;
 import java.util.*;
-import interfacegrafica.*;
+//import interfacegrafica.*;
 import java.text.*;
 
 public class Balanco {
@@ -45,10 +44,10 @@ public class Balanco {
         int indice = 0;
         String def = "";
 
-        for (Caixa box : jFmenu.retornaCaixas()) {
+        for (Caixa box : CoordCaixa.retornaCaixas()) {
 
             if (indice >= indice_caixa) {
-                def = def + varreComandas(jFmenu.retornaComanda(indice));
+                def = def + varreComandas(CoordPedido.retornaPedido(indice));
             }
 
             total_arrecadado = total_arrecadado + box.getTotalCaixa();
@@ -63,4 +62,5 @@ public class Balanco {
             return def;
         }
     }
+    
 }

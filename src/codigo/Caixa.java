@@ -1,15 +1,18 @@
-
+/*
+ * CLASSE CAIXA
+ *
+ * A classe Caixa é responsável pelo controle monetário do restaurante.
+ * Ela que vai realizar todas as tarefas referentes a balanço total e afins.
+ *
+ * ATRIBUTOS PRINCIPAIS
+ * *VALOR INICIAL - Inicializa o caixa, determinando a quantidade inicial
+ *  de dinheiro dentro do mesmo;
+ * *COMANDAS - Array que armazena todas as comandas do dia.
+ */
 package codigo;
 
 import java.util.*;
-/**
- *  classe Caixa é responsável pelo controle monetário do restaurante.
- * Ela que vai realizar todas as tarefas referentes a balanço total e afins.
- *
- * 
- * @author Marco Lucas,Nayara,Nilvando.
- *
- */
+
 public class Caixa {
 
     private double valor_inicial;
@@ -23,29 +26,29 @@ public class Caixa {
         this.data = data;
     }
 
-    public LinkedList<Pedido> getComandas() {
+    public LinkedList<Pedido> getPedidos() {
         return this.pedidos;
     }
 
-    //Método para adicionar uma LinkedList completa a classe caixa.
-    public void setComandas(LinkedList<Pedido> comandas) {
-        this.pedidos = comandas;
+    //Método para adicionar uma LinkedList completa a classe caixa
+    public void setPedidos(LinkedList<Pedido> pedidos) {
+        this.pedidos = pedidos;
     }
 
-    //Metodo que retorna todos os pedidos do caixa.
-    public LinkedList<Pedido> retornaComandas() {
+    //Metodo que retorna todas comandas do caixa
+    public LinkedList<Pedido> retornaPedidos() {
         return pedidos;
     }
 
-    //metodo que retorna um pedido a partir do codigo.
-    public Pedido retornaUmaComanda(int indice_comanda) {
+    //metodo que retorna um comanda a partir do codigo
+    public Pedido retornaUmPedido(int indice_pedido) {
 
-        return pedidos.get(indice_comanda);
+        return pedidos.get(indice_pedido);
 
     }
 
-    //Método para adiconar um pedido na linkedlist da classe Caixa
-    public void adicionaComanda(Pedido c) {
+    //Método para adiconar uma comanda na linkedlist da classe Caixa
+    public void adicionaPedido(Pedido c) {
         pedidos.add(c);
     }
 
@@ -66,8 +69,8 @@ public class Caixa {
     }
 
     //metodo para atualizar o fundo de caixa
-    public void atualizaTotalCaixa(Double valor_nova_comanda){
-        this.total_caixa = this.total_caixa + valor_nova_comanda;
+    public void atualizaTotalCaixa(Double valor_novo_pedido){
+        this.total_caixa = this.total_caixa + valor_novo_pedido;
     }
 
     public double getValor_inicial() {
@@ -77,4 +80,5 @@ public class Caixa {
     public void setValor_inicial(double valor_inicial) {
         this.valor_inicial = valor_inicial;
     }
+    
 }

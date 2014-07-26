@@ -22,13 +22,7 @@ import codigo.Produto;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-/**
- * Esta classe tem como objetivo criar a interface grafica para cadastro o produto.
- *. 
- *@author Marco Lucas,Nayara,Nilvando.
- *@version 1.0
- *  
- */
+
 public class JFcadastroProduto extends JFrame {
 
 	private JPanel contentPane;
@@ -36,7 +30,9 @@ public class JFcadastroProduto extends JFrame {
 	private JTextField textFieldPreco;
 	private JTextField textFieldDescrio;
 
-	
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -49,7 +45,10 @@ public class JFcadastroProduto extends JFrame {
 			}
 		});
 	}
-	//METODO PARA CRIAÇÃO  DA TELA PRODUTO.
+
+	/**
+	 * Create the frame.
+	 */
 	public JFcadastroProduto() {
 		setTitle("Cadastro De Produtos");
 		setResizable(false);
@@ -87,7 +86,6 @@ public class JFcadastroProduto extends JFrame {
 
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
-			//EVENTO DO BOTAO SALVAR
 			public void actionPerformed(ActionEvent arg0) {
 				btnSalvarActionPerformed(arg0);
 			}
@@ -96,7 +94,6 @@ public class JFcadastroProduto extends JFrame {
 				CadProduto cadastro = new CadProduto();
 				Produto novo = new Produto(textFieldNome.getText(),Double.parseDouble(textFieldPreco.getText()),textFieldDescrio.getText());
 				Validacao valida = new Validacao();
-	            //TODOS OS CAMPOS EM BRANCO DA TELA PREENCHIDOS,É CRIADO UM NOVO PRODUTO.
 				if (valida.valida(textFieldNome.getText(),textFieldPreco.getText(),textFieldDescrio.getText())==true) {
 					cadastro.iniciarProduto();
 					cadastro.adicionaProduto(novo);
@@ -112,7 +109,6 @@ public class JFcadastroProduto extends JFrame {
 
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
-			//EVENTO DO BOTAO CANCELAR.
 			public void actionPerformed(ActionEvent arg0) {
 				btnCancelarActionPerformed(arg0);
 			}

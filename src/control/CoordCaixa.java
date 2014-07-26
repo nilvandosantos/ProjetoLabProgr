@@ -8,11 +8,19 @@ import codigo.Caixa;
 public class CoordCaixa {
 	private static LinkedList<Caixa> caixas = new LinkedList<Caixa>();
 	String data;
-	
-	public CoordCaixa(){
+
+	public CoordCaixa() {
 		getData();
 	}
-	
+
+	public static LinkedList<Caixa> getCaixas() {
+		return caixas;
+	}
+
+	public static void setCaixas(LinkedList<Caixa> caixas) {
+		CoordCaixa.caixas = caixas;
+	}
+
 	public String getData() {
 		// Trecho de código responsável por capturar a data em que o caixa está
 		// aberto e armazená-la em uma String no formato DD/MM/AAAA
@@ -35,10 +43,17 @@ public class CoordCaixa {
 		}
 		return isAberto;
 	}
-	
-	//MÃ©todo para adicionar uma caixa a LinkedList caixas
-    public static void addCaixa(Caixa c) {
-        caixas.add(c);
+
+	// Metodo para adicionar uma caixa a LinkedList caixas
+	public static void addCaixa(Caixa c) {
+		caixas.add(c);
+	}
+
+	public static LinkedList<Caixa> retornaCaixas() {
+		return caixas;
+	}
+
+	public static Caixa retornaUmCaixa(int indice) {
+        return caixas.get(indice);
     }
-	
 }

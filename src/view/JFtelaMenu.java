@@ -1,5 +1,6 @@
 package view;
 
+
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -11,6 +12,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+
+import codigo.Balanco;
+
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -62,6 +67,12 @@ public class JFtelaMenu extends JFrame {
 		mnCaixa.add(mntmAberturaDoCaixa);
 
 		JMenuItem mntmBalano = new JMenuItem("Balan\u00E7o");
+		mntmBalano.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int indice_caixa=0;
+				JOptionPane.showMessageDialog(null,"" + Balanco.registraBalanco(indice_caixa), "Balanço Total", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 		mnCaixa.add(mntmBalano);
 
 		JMenu mnCadastro = new JMenu("Cadastro");
@@ -87,6 +98,12 @@ public class JFtelaMenu extends JFrame {
 		menuBar.add(mnPedido);
 
 		JMenuItem mntmAdiciona = new JMenuItem("Adiciona");
+		mntmAdiciona.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new JFcadastroPedido().setVisible(true);
+				
+			}
+		});
 		mnPedido.add(mntmAdiciona);
 
 		JMenuItem mntmConsulta = new JMenuItem("Consulta");
@@ -139,7 +156,8 @@ public class JFtelaMenu extends JFrame {
 		contentPane.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\NRSS\\git\\ProjetoLabProgr\\src\\view\\images.jpg"));
+		lblNewLabel.setIcon(new ImageIcon(
+				"C:\\Users\\NRSS\\Pictures\\images.jpg"));
 		lblNewLabel.setBounds(255, 71, 206, 287);
 		contentPane.add(lblNewLabel);
 	}
