@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -13,7 +12,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
-import javax.swing.JEditorPane;
 
 import control.CadProduto;
 import control.Validacao;
@@ -91,13 +89,18 @@ public class JFcadastroProduto extends JFrame {
 			}
 
 			private void btnSalvarActionPerformed(ActionEvent arg0) {
+				String nome = textFieldNome.getText();
 				CadProduto cadastro = new CadProduto();
 				Produto novo = new Produto(textFieldNome.getText(),Double.parseDouble(textFieldPreco.getText()),textFieldDescrio.getText());
 				Validacao valida = new Validacao();
 				if (valida.valida(textFieldNome.getText(),textFieldPreco.getText(),textFieldDescrio.getText())==true) {
-					cadastro.iniciarProduto();
+					//cadastro.iniciarProduto();
 					cadastro.adicionaProduto(novo);
 					cadastro.gravarProduto();
+					JOptionPane.showMessageDialog(null,
+							"Produto cadastrado com sucesso!\n\nNome: " + nome
+									+ "\nCódigo: " + novo.getCodigo()
+									+ "\nSucesso");
 					dispose();
 				} else {
 					JOptionPane.showMessageDialog(null, "Preenchimento Obrigatorio");

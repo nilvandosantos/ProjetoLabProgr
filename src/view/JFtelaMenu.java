@@ -14,6 +14,9 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
+import control.CadGarcom;
+import control.CadProduto;
+
 import codigo.Balanco;
 
 import java.awt.Color;
@@ -48,6 +51,10 @@ public class JFtelaMenu extends JFrame {
 	 */
 	public JFtelaMenu() {
 		setResizable(false);
+		CadGarcom garcom = new CadGarcom();
+		garcom.iniciarGarcom();
+		CadProduto produto = new CadProduto();
+		produto.iniciarProduto();
 		setTitle("Menu Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 739, 495);
@@ -107,6 +114,11 @@ public class JFtelaMenu extends JFrame {
 		mnPedido.add(mntmAdiciona);
 
 		JMenuItem mntmConsulta = new JMenuItem("Consulta");
+		mntmConsulta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new JFConsultaPedido().setVisible(true);
+			}
+		});
 		mnPedido.add(mntmConsulta);
 
 		JMenuItem mntmAtualiza = new JMenuItem("Atualiza");

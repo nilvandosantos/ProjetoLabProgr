@@ -1,8 +1,5 @@
 package view;
 
-
-
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -12,7 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 import codigo.Caixa;
@@ -36,9 +32,9 @@ public class JFcadastroPedido extends JFrame {
 	private JTextField textFieldQtd;
 	private JTextField textFieldCodGarc;
 	private JTextField textFieldProd;
-	static int codigo_da_comanda_temporaria;
+	static int codigo_do_pedido_temporario;
 	LinkedList<Produto> temporaria_produtos = new LinkedList<Produto>();
-    LinkedList<Integer> temporaria_quantidade = new LinkedList<Integer>();
+	LinkedList<Integer> temporaria_quantidade = new LinkedList<Integer>();
 
 	/**
 	 * Launch the application.
@@ -78,44 +74,47 @@ public class JFcadastroPedido extends JFrame {
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int codigo_do_garcom;
-
-				// Confere se o campo foi devidamente preenchido
 				if (textFieldCodGarc.getText().equals("")
-						|| textFieldQtd.getText().equals("")
-						|| textFieldProd.getText().equals("")) {
-					JOptionPane.showMessageDialog(null,
-							"Preencha todos os campos!", "Erro",
+						|| textFieldProd.getText().equals("")
+						|| textFieldQtd.getText().equals("")) {
+					JOptionPane.showMessageDialog(JFcadastroPedido.this,
+							"Preencha o campo!", "Erro",
 							JOptionPane.ERROR_MESSAGE);
 				} else {
 					try {
-						if (Integer.parseInt(textFieldCodGarc.getText()) <= 0
+						if (Integer.parseInt(textFieldCodGarc.getText()) < 0
 								|| Integer.parseInt(textFieldProd.getText()) < 0
-								|| (Integer.parseInt(textFieldQtd.getText()) <= 0)) {
+								|| Integer.parseInt(textFieldQtd.getText()) < 0) {
 							JOptionPane.showMessageDialog(null,
-									"Digite um valor válido!",
-									"Entrada inválida",
+									"Digite um valor v�lido!",
+									"Entrada inv�lida",
 									JOptionPane.ERROR_MESSAGE);
 							textFieldCodGarc.setText("");
+							textFieldProd.setText("");
+							textFieldQtd.setText("");
 							return;
 						}
 						codigo_do_garcom = Integer.parseInt(textFieldCodGarc
 								.getText());
+
 					} catch (NumberFormatException n) {
 						JOptionPane.showMessageDialog(null,
 								"Digite um valor válido!",
 								"Entrada inválida", JOptionPane.ERROR_MESSAGE);
 						textFieldCodGarc.setText("");
+						textFieldProd.setText("");
+						textFieldQtd.setText("");
 						return;
 					}
-
 					Garcom garcom_temporario = new Garcom();
 					Produto Produto_temporario = new Produto();
+
 					// Váriaveis para armazear valores se a busca por
 					// determinado item foi bem sucedidada
-					
-					boolean achou = false;
-					boolean achou1 = false;
-					boolean achou2 = false;
+					boolean achouGarcom = false;
+					boolean achouCaixa = false;
+					boolean achouProd = false;
+					boolean achou4 = false;
 
 					// For-each para varrer a LinkeList "garcons" em busca do
 					// garçom com código informado
@@ -123,33 +122,13 @@ public class JFcadastroPedido extends JFrame {
 
 						if (a.getCodigo() == codigo_do_garcom) {
 							garcom_temporario = a;
-							achou1 = true;
+							achouGarcom = true;
 							break;
 						}
 
 					}
-					for (Produto p : CadProduto.getProdutos()) {
 
-		                //Verifca se achou um produto com ID igual
-		                //Verifica se os campos foram preenchidos devidamente
-		                try {
-		                    
-		                    if (p.getCodigo() == Integer.parseInt(textFieldProd.getText())) {
-		                        achou = true;
-		                        //Pega o objeto produto
-		                        Produto_temporario = p;
-		                        break;
-		                    }
-		                } catch (NumberFormatException n) {
-		                    JOptionPane.showMessageDialog(null, "Digite um valor válido!", "Entrada inválida", JOptionPane.ERROR_MESSAGE);
-		                    textFieldProd.setText("");
-		                    return;
-		                }
-
-
-		            }
-
-					// Váriavel no formato String que armazena o valor da data
+					// Variavel no formato String que armazena o valor da data
 					// de hoje
 					Calendar temp = Calendar.getInstance();
 					String data_temp = "" + temp.get(Calendar.DAY_OF_MONTH)
@@ -160,23 +139,33 @@ public class JFcadastroPedido extends JFrame {
 
 					// For-each para varrer a LinkeList "caixas" em busca de um
 					// caixa aberto com data do dia
-					for (Caixa c : CoordCaixa.getCaixas()) {
+					for (Caixa c : CoordCaixa.retornaCaixas()) {
 
 						if (c.getData().equals(data_temp)) {
-							achou2 = true;
+							achouCaixa = true;
+
 							break;
 
 						}
-
 						indice++;
-
+					}
+					// Varre a linkedList de protudos em busca do produto com ID
+					// do textField
+					for (Produto p : CadProduto.getProdutos()) {
+						if (p.getCodigo() == Integer.parseInt(textFieldProd
+								.getText())) {
+							achouProd = true;
+							// Pega o objeto produto
+							Produto_temporario = p;
+							break;
+						}
 					}
 
 					// Se achou um garçom com código informado
-					if (achou1) {
+					if (achouGarcom) {
 
 						// Se já existe um caixa aberto com a data de hoje
-						if (achou2) {
+						if (achouCaixa) {
 
 							// Cria um objeto comanda já instanciado com o
 							// garçom de código informado
@@ -184,43 +173,90 @@ public class JFcadastroPedido extends JFrame {
 									data_temp);
 							// Adiciona ao caixa de indice achado no for-each
 							// com a comanda temporaria
-							codigo_da_comanda_temporaria = temporaria
+							codigo_do_pedido_temporario = temporaria
 									.getNumero();
 
 							// Adiciona uma comanda ao objeto caixa de indice
 							// "indice" achado na LinkeList de caixas
 							CoordPedido.adicionaPedido(indice, temporaria);
+							// Varre a linkedlist de comandas dentro da
+							// linkedlist
+							// de caixas do dia corrente
+							for (Pedido c : CoordPedido.retornaPedido(indice)) {
 
-							// new
-							// jFcadastraComandaProduto(jFcadastraComanda.this).show();
+								// Verifica a compatibilidade da comanda
+								// temporaria
+								// com a comanda final
+								if (c.getNumero() == codigo_do_pedido_temporario) {
+									// Se achou, seta de verdade a comanda
+									// temporaria na comanda final
+									achou4 = true;
+									c.setProdutosEQuantidade(
+											temporaria_quantidade,
+											temporaria_produtos);
+									break;
+
+								}
+
+							}
+
+							if (achou4) {
+								// Exibe na tela o sucesso da operação
+								JOptionPane.showMessageDialog(
+										JFcadastroPedido.this,
+										"Comanda cadastrada com sucesso!\n\nID da comanda: "
+												+ codigo_do_pedido_temporario,
+										"Ok", JOptionPane.INFORMATION_MESSAGE);
+								// Else para o caso de não achar a
+								// compatibilidade
+								// das comandas
+							} else {
+								JOptionPane.showMessageDialog(
+										JFcadastroPedido.this,
+										"Erro! Tente novamente", "Erro",
+										JOptionPane.ERROR_MESSAGE);
+								JFcadastroPedido.this.setVisible(false);
+							}
 
 						} else {
-							JOptionPane.showMessageDialog(null,
+							JOptionPane.showMessageDialog(
+									JFcadastroPedido.this,
 									"O caixa ainda não foi aberto", "Saída",
+									JOptionPane.ERROR_MESSAGE);
+						}
+						if (achouProd) {
+							// Adiciona um produto a uma LinkedList de produtos
+							// temporarios
+							temporaria_produtos.add(Produto_temporario);
+							// Adiciona a quantidade do produto a uma LinkedList
+							// de
+							// quantidades temporarias
+							temporaria_quantidade.add(Integer
+									.parseInt(textFieldQtd.getText()));
+							// Mensagem de confirmação
+							JOptionPane
+									.showMessageDialog(
+											JFcadastroPedido.this,
+											"Produto adicionado a comanda com sucesso!",
+											"Sucesso",
+											JOptionPane.INFORMATION_MESSAGE);
+						} else {
+							JOptionPane.showMessageDialog(
+									JFcadastroPedido.this,
+									"Produto não encontrado!", "Erro",
 									JOptionPane.ERROR_MESSAGE);
 						}
 
 					} else {
-						JOptionPane.showMessageDialog(null,
+						JOptionPane.showMessageDialog(JFcadastroPedido.this,
 								"Código de garçom não encontrado", "Saída",
 								JOptionPane.ERROR_MESSAGE);
 					}
-					if (achou) {
-		                //Adiciona um produto a uma LinkedList de produtos temporarios
-		                temporaria_produtos.add(Produto_temporario);
-		                //Adiciona a quantidade do produto a uma LinkedList de quantidades temporarias
-		                temporaria_quantidade.add(Integer.parseInt(textFieldQtd.getText()));
-		                //Limpa os campos                
-		                textFieldProd.setText("");
-		                textFieldQtd.setText("");
-		                //Mensagem de confirmação
-		                JOptionPane.showMessageDialog(null, "Produto adicionado a comanda com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-		            } else {
-		                JOptionPane.showMessageDialog(null, "Produto não encontrado!", "Erro", JOptionPane.ERROR_MESSAGE);
-		            }
 
 				}
+			dispose();
 			}
+			
 		});
 
 		btnCadastrar.setBounds(71, 109, 89, 23);

@@ -27,28 +27,13 @@ public class CadGarcom {
 		CadGarcom.garcons = garcons;
 	}
 	public CadGarcom(){
-		iniciarGarcom();
+		//iniciarGarcom();
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 	}
 
-	/*public void abrirArquivo() {
-		File arquivo = new File("Garcons.txt");
-		try {
-			if (!arquivo.exists()) {
-				// cria um arquivo (vazio)
-				arquivo.createNewFile();
-				JOptionPane.showMessageDialog(null,
-						"Arquivo criado com sucesso!");
-			}
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}*/
 
 	public void iniciarGarcom() {
 
@@ -93,7 +78,6 @@ public class CadGarcom {
 				Garcom temporario = new Garcom(nome, codigo, gorjeta,
 						totalGorjeta);
 				adicionaGarcom(temporario);
-				System.out.println(temporario);
 			}
 		} catch (EOFException eof) {
 			moreRecordsGarcom = false;
@@ -160,5 +144,11 @@ public class CadGarcom {
 			System.exit(1);
 		}
 	}
-
+	public String ajuda() {
+		String ajuda="";
+		for (Garcom a : garcons) {
+			return ajuda = ajuda + (a.getCodigo()+ " "+ a.getNome()+"\n");
+		}
+		return ajuda;
+	}
 }

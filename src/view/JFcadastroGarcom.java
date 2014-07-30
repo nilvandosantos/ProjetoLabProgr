@@ -88,7 +88,7 @@ public class JFcadastroGarcom extends JFrame {
 					JOptionPane.showMessageDialog(null,
 							"Garçom cadastrado com sucesso!\n\nNome: " + nome
 									+ "\nCódigo: " + novo.getCodigo()
-									+ "Sucesso");
+									+ "\nSucesso");
 
 					dispose();
 				} else {
