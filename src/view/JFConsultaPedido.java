@@ -51,12 +51,18 @@ public class JFConsultaPedido extends JFrame {
 	 * Create the frame.
 	 */
 	public JFConsultaPedido() {
+		
+		JButton btnConsultar = new JButton("Consultar");
+		JButton btnCancelar = new JButton("Cancelar");
+		JButton btnAjuda = new JButton("?");
+		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 356, 173);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		getRootPane().setDefaultButton(btnConsultar);
 		
 		JLabel lblCdigoDoGarom = new JLabel("C\u00F3digo do Gar\u00E7om:");
 		lblCdigoDoGarom.setBounds(10, 34, 127, 14);
@@ -67,7 +73,6 @@ public class JFConsultaPedido extends JFrame {
 		contentPane.add(textFieldCodGarcom);
 		textFieldCodGarcom.setColumns(10);
 		
-		JButton btnConsultar = new JButton("Consultar");
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				 //Verifica se o campo estÃ¡ preenchido
@@ -189,7 +194,6 @@ public class JFConsultaPedido extends JFrame {
 		btnConsultar.setBounds(10, 86, 112, 23);
 		contentPane.add(btnConsultar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
@@ -198,11 +202,10 @@ public class JFConsultaPedido extends JFrame {
 		btnCancelar.setBounds(217, 86, 112, 23);
 		contentPane.add(btnCancelar);
 		
-		JButton btnAjuda = new JButton("?");
 		btnAjuda.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent arg0) {
 				CadGarcom ajuda = new CadGarcom();
-                JOptionPane.showMessageDialog(null, "" + ajuda.ajuda(), "Ok", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "" + ajuda.ajuda(), "Códigos dos Garçons", JOptionPane.INFORMATION_MESSAGE);
 				
 			}
 		});

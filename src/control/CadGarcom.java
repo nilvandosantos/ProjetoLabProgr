@@ -147,7 +147,7 @@ public class CadGarcom {
 	public String ajuda() {
 		String ajuda="";
 		for (Garcom a : garcons) {
-			return ajuda = ajuda + (a.getCodigo()+ " "+ a.getNome()+"\n");
+			ajuda = ajuda + (a.getCodigo()+ " "+ a.getNome()+"\n");
 		}
 		return ajuda;
 	}

@@ -56,6 +56,10 @@ public class JFcadastroPedido extends JFrame {
 	 * Create the frame.
 	 */
 	public JFcadastroPedido() {
+		
+		JButton btnCadastrar = new JButton("Cadastrar");
+		JButton btnCancelar = new JButton("Cancelar");
+		
 		setTitle("Novo Pedido");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 196);
@@ -63,14 +67,14 @@ public class JFcadastroPedido extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		getRootPane().setDefaultButton(btnCadastrar);
+		
 		JLabel lblDigiteOCdigo = new JLabel(
 				"Digite o C\u00F3digo do Gar\u00E7on:");
 		lblDigiteOCdigo.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblDigiteOCdigo.setBounds(23, 11, 194, 20);
 		contentPane.add(lblDigiteOCdigo);
 
-		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int codigo_do_garcom;
@@ -262,7 +266,6 @@ public class JFcadastroPedido extends JFrame {
 		btnCadastrar.setBounds(71, 109, 89, 23);
 		contentPane.add(btnCadastrar);
 
-		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();

@@ -48,6 +48,10 @@ public class JFcadastroGarcom extends JFrame {
 	 * Create the frame.
 	 */
 	public JFcadastroGarcom() {
+		
+		JButton btnSalvar = new JButton("Salvar");
+		JButton btnCancelar = new JButton("Cancelar");
+		
 		setResizable(false);
 		setBackground(new Color(255, 255, 255));
 		setTitle("Cadastro Garçon");
@@ -58,7 +62,8 @@ public class JFcadastroGarcom extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		getRootPane().setDefaultButton(btnSalvar);
+		
 		JLabel lblNome = new JLabel("Nome: ");
 		lblNome.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblNome.setBounds(26, 27, 46, 14);
@@ -69,7 +74,6 @@ public class JFcadastroGarcom extends JFrame {
 		contentPane.add(textFieldNome);
 		textFieldNome.setColumns(10);
 
-		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnSalvarActionPerformed(arg0);
@@ -101,7 +105,6 @@ public class JFcadastroGarcom extends JFrame {
 		btnSalvar.setBounds(110, 72, 110, 23);
 		contentPane.add(btnSalvar);
 
-		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnCancelarActionPerformed(arg0);

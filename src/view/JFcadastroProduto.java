@@ -48,6 +48,10 @@ public class JFcadastroProduto extends JFrame {
 	 * Create the frame.
 	 */
 	public JFcadastroProduto() {
+		
+		JButton btnSalvar = new JButton("Salvar");
+		JButton btnCancelar = new JButton("Cancelar");
+		
 		setTitle("Cadastro De Produtos");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,7 +60,8 @@ public class JFcadastroProduto extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		getRootPane().setDefaultButton(btnSalvar);
+		
 		JLabel lblNome = new JLabel("Nome:");
 		lblNome.setFont(new Font("Times New Roman", Font.BOLD, 12));
 		lblNome.setBounds(10, 37, 46, 14);
@@ -82,7 +87,6 @@ public class JFcadastroProduto extends JFrame {
 		lblDescrio.setBounds(10, 132, 70, 14);
 		contentPane.add(lblDescrio);
 
-		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnSalvarActionPerformed(arg0);
@@ -110,7 +114,6 @@ public class JFcadastroProduto extends JFrame {
 		btnSalvar.setBounds(84, 210, 114, 23);
 		contentPane.add(btnSalvar);
 
-		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				btnCancelarActionPerformed(arg0);
