@@ -37,23 +37,8 @@ public class JFcadastroPedido extends JFrame {
 	LinkedList<Integer> temporaria_quantidade = new LinkedList<Integer>();
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JFcadastroPedido frame = new JFcadastroPedido();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
+	 * Esta classe tem o intuito de cadastrar os pedidos.
+	 * 
 	 */
 	public JFcadastroPedido() {
 		
@@ -113,7 +98,7 @@ public class JFcadastroPedido extends JFrame {
 					Garcom garcom_temporario = new Garcom();
 					Produto Produto_temporario = new Produto();
 
-					// V√°riaveis para armazear valores se a busca por
+					// Variaveis para armazear valores se a busca por
 					// determinado item foi bem sucedidada
 					boolean achouGarcom = false;
 					boolean achouCaixa = false;
@@ -121,7 +106,7 @@ public class JFcadastroPedido extends JFrame {
 					boolean achou4 = false;
 
 					// For-each para varrer a LinkeList "garcons" em busca do
-					// gar√ßom com c√≥digo informado
+					// garcons com codigo informado
 					for (Garcom a : CadGarcom.getGarcons()) {
 
 						if (a.getCodigo() == codigo_do_garcom) {
@@ -153,47 +138,49 @@ public class JFcadastroPedido extends JFrame {
 						}
 						indice++;
 					}
-					// Varre a linkedList de protudos em busca do produto com ID
-					// do textField
+					/* Varre a linkedList de protudos em busca do produto com ID
+					 * do textField
+					*/
 					for (Produto p : CadProduto.getProdutos()) {
 						if (p.getCodigo() == Integer.parseInt(textFieldProd
 								.getText())) {
 							achouProd = true;
-							// Pega o objeto produto
+							
 							Produto_temporario = p;
 							break;
 						}
 					}
 
-					// Se achou um gar√ßom com c√≥digo informado
+					// Se achou um garÁom com codigo informado
 					if (achouGarcom) {
 
-						// Se j√° existe um caixa aberto com a data de hoje
+						// Se j·  existe um caixa aberto com a data de hoje
 						if (achouCaixa) {
 
-							// Cria um objeto comanda j√° instanciado com o
-							// gar√ßom de c√≥digo informado
+							// Cria um objeto pedido j· instanciado com o
+							// garÁom de codigo informado
 							Pedido temporaria = new Pedido(garcom_temporario,
 									data_temp);
 							// Adiciona ao caixa de indice achado no for-each
-							// com a comanda temporaria
+							// com o pedido temporario
 							codigo_do_pedido_temporario = temporaria
 									.getNumero();
 
-							// Adiciona uma comanda ao objeto caixa de indice
+							// Adiciona uma pedido ao objeto caixa de indice
 							// "indice" achado na LinkeList de caixas
 							CoordPedido.adicionaPedido(indice, temporaria);
-							// Varre a linkedlist de comandas dentro da
-							// linkedlist
-							// de caixas do dia corrente
+							/* Varre a linkedlist de pedidos dentro da
+                             * linkedlist de caixas do dia corrente
+							 * 
+							 */
 							for (Pedido c : CoordPedido.retornaPedido(indice)) {
 
-								// Verifica a compatibilidade da comanda
+								// Verifica a compatibilidade da pedido
 								// temporaria
-								// com a comanda final
+								// com a pedido final
 								if (c.getNumero() == codigo_do_pedido_temporario) {
-									// Se achou, seta de verdade a comanda
-									// temporaria na comanda final
+									// Se achou, seta de verdade a pedido
+									// temporaria na pedido final
 									achou4 = true;
 									c.setProdutosEQuantidade(
 											temporaria_quantidade,
@@ -205,15 +192,15 @@ public class JFcadastroPedido extends JFrame {
 							}
 
 							if (achou4) {
-								// Exibe na tela o sucesso da opera√ß√£o
+								// Exibe na tela o sucesso da operaÁ„o
 								JOptionPane.showMessageDialog(
 										JFcadastroPedido.this,
-										"Comanda cadastrada com sucesso!\n\nID da comanda: "
+										"pedido cadastrado com sucesso!\n\nID do pedido: "
 												+ codigo_do_pedido_temporario,
 										"Ok", JOptionPane.INFORMATION_MESSAGE);
-								// Else para o caso de n√£o achar a
-								// compatibilidade
-								// das comandas
+								/*Else para o caso de nao achar a
+								 * compatibilidade  dos pedidos
+								 */
 							} else {
 								JOptionPane.showMessageDialog(
 										JFcadastroPedido.this,
@@ -225,35 +212,35 @@ public class JFcadastroPedido extends JFrame {
 						} else {
 							JOptionPane.showMessageDialog(
 									JFcadastroPedido.this,
-									"O caixa ainda n√£o foi aberto", "Sa√≠da",
+									"O caixa ainda n„o foi aberto", "Saida",
 									JOptionPane.ERROR_MESSAGE);
 						}
 						if (achouProd) {
 							// Adiciona um produto a uma LinkedList de produtos
 							// temporarios
 							temporaria_produtos.add(Produto_temporario);
-							// Adiciona a quantidade do produto a uma LinkedList
-							// de
-							// quantidades temporarias
+							/*Adiciona a quantidade do produto a uma LinkedList
+							 * de quantidades temporarias
+							 */
 							temporaria_quantidade.add(Integer
 									.parseInt(textFieldQtd.getText()));
-							// Mensagem de confirma√ß√£o
+							// Mensagem de confirmaÁao
 							JOptionPane
 									.showMessageDialog(
 											JFcadastroPedido.this,
-											"Produto adicionado a comanda com sucesso!",
+											"Produto adicionado a pedido com sucesso!",
 											"Sucesso",
 											JOptionPane.INFORMATION_MESSAGE);
 						} else {
 							JOptionPane.showMessageDialog(
 									JFcadastroPedido.this,
-									"Produto n√£o encontrado!", "Erro",
+									"Produto n„o encontrado!", "Erro",
 									JOptionPane.ERROR_MESSAGE);
 						}
 
 					} else {
 						JOptionPane.showMessageDialog(JFcadastroPedido.this,
-								"C√≥digo de gar√ßom n√£o encontrado", "Sa√≠da",
+								"Codigo de garÁom n„o encontrado", "Saida",
 								JOptionPane.ERROR_MESSAGE);
 					}
 

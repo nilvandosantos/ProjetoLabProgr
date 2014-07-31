@@ -29,23 +29,8 @@ public class JFcadastroProduto extends JFrame {
 	private JTextField textFieldDescrio;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JFcadastroProduto frame = new JFcadastroProduto();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
+	 * Esta classe tem o intuito de criar a  tela cadastro Produto
+	 * 
 	 */
 	public JFcadastroProduto() {
 		
@@ -97,8 +82,9 @@ public class JFcadastroProduto extends JFrame {
 				CadProduto cadastro = new CadProduto();
 				Produto novo = new Produto(textFieldNome.getText(),Double.parseDouble(textFieldPreco.getText()),textFieldDescrio.getText());
 				Validacao valida = new Validacao();
+				//Verifica se o campo esta vazio
 				if (valida.valida(textFieldNome.getText(),textFieldPreco.getText(),textFieldDescrio.getText())==true) {
-					//cadastro.iniciarProduto();
+					//Adiciona o produto na lista
 					cadastro.adicionaProduto(novo);
 					cadastro.gravarProduto();
 					JOptionPane.showMessageDialog(null,

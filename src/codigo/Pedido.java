@@ -71,11 +71,11 @@ public class Pedido {
         return data.substring(6, 11);
     }
 
-    public void setComandaAberta(boolean comanda_aberta) {
+    public void setPedidoAberto(boolean comanda_aberta) {
         this.comanda_aberta = comanda_aberta;
     }
 
-    public boolean getComandaAberta() {
+    public boolean getPedidoAberto() {
         return comanda_aberta;
     }
 

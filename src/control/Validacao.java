@@ -1,5 +1,12 @@
 package control;
 
+/**
+ * Esta classe tem como objetivo permitir que campos em branco pertecente as interfaces graficas 
+ * não sejam salvos ate que sejam totalmente preenchidos.
+ * 
+ * @author Marcos Lucas,Nayara,Nilvando.
+ *
+ */
 public class Validacao {
 	public boolean valida(String... entradas) {
 		boolean apto = true;

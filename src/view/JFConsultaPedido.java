@@ -30,25 +30,12 @@ public class JFConsultaPedido extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldCodGarcom;
-
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JFConsultaPedido frame = new JFConsultaPedido();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
+	 * Esta classe tem como objetivo criar a interface grafica para consultar pedido.
+	 *. 
+	 *@author Marco Lucas,Nayara,Nilvando.
+	 *@version 1.0
+	 *  
 	 */
 	public JFConsultaPedido() {
 		
@@ -75,7 +62,7 @@ public class JFConsultaPedido extends JFrame {
 		
 		btnConsultar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				 //Verifica se o campo está preenchido
+				 //Verifica se o campo esta preenchido
 		        if (textFieldCodGarcom.getText().equals("")) {
 
 		            JOptionPane.showMessageDialog(JFConsultaPedido.this, "Preencha o campo!", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -84,15 +71,15 @@ public class JFConsultaPedido extends JFrame {
 
 
 
-		            //Variáveis necessárias para o funcionamento do algoritmo
+		            //Variaveis necessarias para o funcionamento do algoritmo
 		            Calendar calendario_temporario = Calendar.getInstance();
 		            String data_temporaria = "" + calendario_temporario.get(Calendar.DAY_OF_MONTH) + "/" + (calendario_temporario.get(Calendar.MONTH) + 1) + "/" + calendario_temporario.get(Calendar.YEAR);
 		            int indice_de_caixa = 0;
-		            int indice_de_comandas = 0;
+		            int indice_de_pedidos = 0;
 		            boolean achou = false;
 		            boolean achou_garcon = false;
-		            boolean achou_comanda = false;
-		            LinkedList<Integer> lista_de_comandas = new LinkedList<Integer>();
+		            boolean achou_pedido = false;
+		            LinkedList<Integer> lista_de_pedidos = new LinkedList<Integer>();
 
 		            //Varre a LinkedLista "caixas" em busca de caixas com a data do dia corrente
 		            for (Caixa c : CoordCaixa.retornaCaixas()) {
@@ -104,16 +91,16 @@ public class JFConsultaPedido extends JFrame {
 
 		                }
 
-		                //Váriavel para armazenar o índice do caixa
+		                //Variavel para armazenar o indice do caixa
 		                indice_de_caixa++;
 		            }
 
 		            //Se achou um caixa com dia de hoje, entra aqui
 		            if (achou) {
 
-		                //Varre a LinkedList garçons em busca do garçom com código informado pelo usuário
+		                //Varre a LinkedList gar�ons em busca do gar�ons com codigo informado pelo usuario
 		                for (Garcom g : CadGarcom.getGarcons()) {
-		                    //Verifica se existe algum garçom cadastrado com código fornecido
+		                    //Verifica se existe algum gar�ons cadastrado com codigo fornecido
 		                    try {
 		                        if (Integer.parseInt(textFieldCodGarcom.getText()) <= 0) {
 		                            JOptionPane.showMessageDialog(null, "Digite um valor v�lido!", "Entrada inv�lida", JOptionPane.ERROR_MESSAGE);
@@ -132,24 +119,24 @@ public class JFConsultaPedido extends JFrame {
 		                    }
 		                }
 
-		                //Se achou um garçom com ID informada, entra aqui
+		                //Se achou um gar�om com ID informa, entra aqui
 		                if (achou_garcon) {
 
-		                    //For-each para varrer a LinkedList de comandas na LinkedList do indice achado no primeiro for
+		                    //For-each para varrer a LinkedList de pedidos na LinkedList do indice achado no primeiro for
 		                    for (Pedido d : CoordPedido.retornaPedido(indice_de_caixa)) {
 
-		                        //Verifica as comandas que estão com o índice do garçon                        
+		                        //Verifica as pedidos que estao com o indice do gar�om                        
 		                        try {
 		                            if (Integer.parseInt(textFieldCodGarcom.getText()) <= 0) {
 		                            JOptionPane.showMessageDialog(null, "Digite um valor válido!", "Entrada inválida", JOptionPane.ERROR_MESSAGE);
 		                            textFieldCodGarcom.setText("");
 		                            return;
 		                        }
-		                            if (d.getCodigoGarcon() == Integer.parseInt(textFieldCodGarcom.getText()) && d.getComandaAberta()) {
+		                            if (d.getCodigoGarcon() == Integer.parseInt(textFieldCodGarcom.getText()) && d.getPedidoAberto()) {
 
-		                                //Adiciona o índice das comandas que estão em nome do garçon em uma LinkedList de integer
-		                                lista_de_comandas.add(indice_de_comandas);
-		                                achou_comanda = true;
+		                                //Adiciona o indice dos pedidos que estao em nome do gar�om em uma LinkedList de integer
+		                                lista_de_pedidos.add(indice_de_pedidos);
+		                                achou_pedido = true;
 
 		                            }
 		                        } catch (NumberFormatException n) {
@@ -157,35 +144,35 @@ public class JFConsultaPedido extends JFrame {
 		                            textFieldCodGarcom.setText("");
 		                            return;
 		                        }
-		                        indice_de_comandas++;
+		                        indice_de_pedidos++;
 		                    }
 
 		                    //Limpar o campo de texto
 		                    textFieldCodGarcom.setText("");
 
-		                    //Se achou alguma comanda em nome do garçon
-		                    if (achou_comanda) {
+		                    //Se achou alguma pedido em nome do gar�om
+		                    if (achou_pedido) {
 
-		                        //For-each para exibir em JOption todas as comandas em nome do garçon
-		                        for (Integer a : lista_de_comandas) {
+		                        //For-each para exibir em JOption todas as pedidos em nome do gar�om
+		                        for (Integer a : lista_de_pedidos) {
 
-		                            JOptionPane.showMessageDialog(JFConsultaPedido.this, CoordPedido.retornaUmPedido(indice_de_caixa, a).toString(), "Comanda", JOptionPane.INFORMATION_MESSAGE);
+		                            JOptionPane.showMessageDialog(JFConsultaPedido.this, CoordPedido.retornaUmPedido(indice_de_caixa, a).toString(), "pedido", JOptionPane.INFORMATION_MESSAGE);
 
 		                        }
 
 		                        JFConsultaPedido.this.setVisible(false);
-		                        //Else para nenhuma Comanda encontrada em nome do garçom   
+		                        //Else para nenhum pedido encontrado em nome do gar�om   
 		                    } else {
 
-		                        JOptionPane.showMessageDialog(JFConsultaPedido.this, "Não existe nenhuma comanda em seu nome!", "Ok", JOptionPane.INFORMATION_MESSAGE);
+		                        JOptionPane.showMessageDialog(JFConsultaPedido.this, "N�o existe nenhuma pedido em seu nome!", "Ok", JOptionPane.INFORMATION_MESSAGE);
 		                    }
-		                    //Else para nenhum garçom encontrado
+		                    //Else para nenhum gar�om encontrado
 		                } else {
-		                    JOptionPane.showMessageDialog(JFConsultaPedido.this, "Não existe nenhum garçom com esse código!", "Erro", JOptionPane.ERROR_MESSAGE);
+		                    JOptionPane.showMessageDialog(JFConsultaPedido.this, "N�o existe nenhum gar�om com esse codigo!", "Erro", JOptionPane.ERROR_MESSAGE);
 		                }
 		                //Else para nenhum Caixa encontrado na LinkedList caixas com a data de hoje    
 		            } else {
-		                JOptionPane.showMessageDialog(JFConsultaPedido.this, "O caixa de hoje ainda não foi aberto!", "Erro", JOptionPane.ERROR_MESSAGE);
+		                JOptionPane.showMessageDialog(JFConsultaPedido.this, "O caixa de hoje ainda n�o foi aberto!", "Erro", JOptionPane.ERROR_MESSAGE);
 		            }
 
 		        }

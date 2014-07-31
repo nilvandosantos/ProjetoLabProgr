@@ -17,30 +17,19 @@ import codigo.Caixa;
 import control.CoordCaixa;
 import control.Validacao;
 
+/**
+ * Esta classe tem como objetivo criar a interface grafica para a abertura do caixa.
+ *. 
+ *@author Marco Lucas,Nayara,Nilvando.
+ *@version 1.0
+ *  
+ */
 public class JFaberturaCaixa extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldValor;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JFaberturaCaixa frame = new JFaberturaCaixa();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	//METODO PARA CRIAÇÃO DA TELA 
 	public JFaberturaCaixa() {
 		
 		JLabel lblValorAtualmenteNo = new JLabel("Valor Atualmente no Caixa:");
@@ -74,12 +63,13 @@ public class JFaberturaCaixa extends JFrame {
 				CoordCaixa caixa = new CoordCaixa();
 				Caixa novoCaixa;
 				Validacao valida = new Validacao();
-
+				//CAMPO VALOR ESTA PREENCHIDO
 				if (valida.valida(valor) == true) {
-
+				//VERIFICA SE O CAIXA ESTA ABERTO
 					if (!caixa.isCaixaAberto()) {
 
 						try {
+							//VALOR DIGITADO FOR INVALIDO MENSAGEM DE ERRO SERÁ APRESENTADA AO USUARIO
 							if (Double.parseDouble(valor) < 0) {
 								JOptionPane.showMessageDialog(null,
 										"Digite um valor válido!",
@@ -99,8 +89,7 @@ public class JFaberturaCaixa extends JFrame {
 							return;
 						}
 
-						// Trecho que adiciona um novo caixa caso esteja tudo
-						// certo
+						// Trecho que adiciona um novo caixa caso esteja tudo certo
 						novoCaixa = new Caixa(valorInicial, caixa.getData());
 						textFieldValor.setText("");
 						caixa.addCaixa(novoCaixa);

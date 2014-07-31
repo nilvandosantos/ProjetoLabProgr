@@ -30,24 +30,15 @@ public class JFatualizaPedido extends JFrame {
 	private JTextField textFieldQtd;
 
 	/**
-	 * Launch the application.
+	 * Esta classe tem como objetivo criar a interface grafica para adicionar um novo produto ao pedido.
+	 *. 
+	 *@author Marco Lucas,Nayara,Nilvando.
+	 *@see JFcadastroPedido
+	 *@version 1.0
+	 *  
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JFatualizaPedido frame = new JFatualizaPedido();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
+	
+	//CRIA��O DA TELA ATUALIZAR PEDIDO
 	public JFatualizaPedido() {
 		setTitle("Atualiza o Pedido");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -91,10 +82,10 @@ public class JFatualizaPedido extends JFrame {
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int indice_caixa = 0;
-				int indice_comanda = 0;
+				int indice_pedido = 0;
 
 				boolean achou = false;
-				// Verifica se todos os campos estão preenchidos
+				// VERIFICA SE OS CAMPOS ESTAO PREENCHIDOS
 				if (textFieldCodPedido.getText().equals("")
 						|| textFieldProduto.getText().equals("")
 						|| textFieldQtd.getText().equals("")) {
@@ -106,19 +97,20 @@ public class JFatualizaPedido extends JFrame {
 					// For-each para varrer a LinkedList de Caixa
 					for (Caixa c : CoordCaixa.retornaCaixas()) {
 
-						// For-each para varrer a LinkedList de Comanda dentro
-						// de um objeto da LinkedList caixa em busca da comanda
-						// com ID fornecido
+						/* For-each para varrer a LinkedList de pedido dentro de um objeto da LinkedList caixa em busca da pedido
+						 * com ID fornecido
+						*/ 
 						for (Pedido d : CoordPedido.retornaPedido(indice_caixa)) {
 
-							// Verifica se a comanda tem o indice fornecido pelo
-							// usuário
+							/* Verifica se o pedido tem o indice fornecido pelo
+							*	usuario
+							*/
 							try {
 								if (Integer.parseInt(textFieldCodPedido
 										.getText()) <= 0) {
 									JOptionPane.showMessageDialog(null,
-											"Digite um valor válido!",
-											"Entrada inválida",
+											"Digite um valor valido!",
+											"Entrada invalida",
 											JOptionPane.ERROR_MESSAGE);
 									textFieldCodPedido.setText("");
 									return;
@@ -126,7 +118,7 @@ public class JFatualizaPedido extends JFrame {
 								if (d.getNumero().equals(
 										Integer.parseInt(textFieldCodPedido
 												.getText()))
-										&& d.getComandaAberta()) {
+										&& d.getPedidoAberto()) {
 									achou = true;
 									break;
 								}
@@ -134,14 +126,14 @@ public class JFatualizaPedido extends JFrame {
 								JOptionPane
 										.showMessageDialog(
 												null,
-												"Digite um código de comanda válido!",
-												"Entrada inválida",
+												"Digite um codigo de pedido valido!",
+												"Entrada invalida",
 												JOptionPane.ERROR_MESSAGE);
 								textFieldCodPedido.setText("");
 								return;
 							}
 
-							indice_comanda++;
+							indice_pedido++;
 
 						}
 
@@ -153,24 +145,25 @@ public class JFatualizaPedido extends JFrame {
 
 					}
 
-					// Se achou a comanda com ID fornecido
+					// Se achou o pedido com ID fornecido
 					if (achou) {
 
-						Pedido comanda_alterar = CoordPedido.retornaUmPedido(
-								indice_caixa, indice_comanda);
+						Pedido pedido_alterar = CoordPedido.retornaUmPedido(
+								indice_caixa, indice_pedido);
 						int indice_do_produto = 0;
 						boolean achou_produto = false;
 
-						// Varre a LinkedList de produtos para verificar se o
-						// produto já esta na comanda
-						for (Produto p : comanda_alterar.retornaProdutos()) {
+						/* Varre a LinkedList de produtos para verificar se o
+						/ produto ja esta na pedido
+						 */
+						for (Produto p : pedido_alterar.retornaProdutos()) {
 
-							// Verifica se o produto já está na comanda
+							// Verifica se o produto ja estao no pedido
 							try {
 								if (Integer.parseInt(textFieldProduto.getText()) <= 0) {
 									JOptionPane.showMessageDialog(null,
-											"Digite um valor válido!",
-											"Entrada inválida",
+											"Digite um valor valido!",
+											"Entrada invalida",
 											JOptionPane.ERROR_MESSAGE);
 									textFieldProduto.setText("");
 									return;
@@ -184,8 +177,8 @@ public class JFatualizaPedido extends JFrame {
 								JOptionPane
 										.showMessageDialog(
 												null,
-												"Digite um código de produto válido!",
-												"Entrada inválida",
+												"Digite um codigo de produto valido!",
+												"Entrada invalida",
 												JOptionPane.ERROR_MESSAGE);
 								textFieldProduto.setText("");
 								return;
@@ -195,17 +188,17 @@ public class JFatualizaPedido extends JFrame {
 
 						}
 
-						// Se achou o produto na comanda, entra aqui
+						// Se achou o produto no pedido, entra aqui
 						if (achou_produto) {
 
 							Integer quantidade = 0;
-							quantidade = comanda_alterar
+							quantidade = pedido_alterar
 									.getQtde(indice_do_produto);
 							try {
 								if (Integer.parseInt(textFieldQtd.getText()) < 0) {
 									JOptionPane.showMessageDialog(null,
 											"Digite um valor v�lido!",
-											"Entrada inválida",
+											"Entrada invalida",
 											JOptionPane.ERROR_MESSAGE);
 									textFieldQtd.setText("");
 									return;
@@ -216,12 +209,12 @@ public class JFatualizaPedido extends JFrame {
 							} catch (NumberFormatException n) {
 								JOptionPane.showMessageDialog(null,
 										"Digite uma quantidade v�lida!",
-										"Entrada inválida",
+										"Entrada invalida",
 										JOptionPane.ERROR_MESSAGE);
 								textFieldQtd.setText("");
 								return;
 							}
-							comanda_alterar.alteraQtde(indice_do_produto,
+							pedido_alterar.alteraQtde(indice_do_produto,
 									quantidade);
 
 							textFieldCodPedido.setText("");
@@ -229,13 +222,14 @@ public class JFatualizaPedido extends JFrame {
 							textFieldQtd.setText("");
 							JOptionPane.showMessageDialog(
 									JFatualizaPedido.this,
-									"Produto atualizado.\nComanda ["
-											+ comanda_alterar.getNumero()
+									"Produto atualizado.\nPedido ["
+											+ pedido_alterar.getNumero()
 											+ "] atualizada com sucesso!",
 									"Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
-							// Se o produto ainda não está na comanda, será
-							// adicionado
+							/*Se o produto ainda n�o estao no pedido, ser�o
+								adicionado
+							 */
 						} else {
 
 							Produto produto_a_ser_adicionado = new Produto();
@@ -247,8 +241,10 @@ public class JFatualizaPedido extends JFrame {
 							// Varre a LinkedList de produtos
 							for (Produto a : CadProduto.getProdutos()) {
 
-								// Verifica se o produto com código fornecido
-								// pelo usuário está na LinkeList de produtos
+								/*
+								 *  Verifica se o produto com codigo fornecido,pelo usuario estao na LinkeList de produtos
+								 */
+								
 								try {
 									if (Integer.parseInt(textFieldProduto
 											.getText()) <= 0) {
@@ -279,11 +275,11 @@ public class JFatualizaPedido extends JFrame {
 
 							}
 
-							// Se achou o produto na LinkedList de produtos,
-							// adiciona ele na comanda
+							/* Se achou o produto na LinkedList de produtos,adiciona ele no pedido
+							 */
 							if (achou_produto2) {
 
-								comanda_alterar.adicionaProduto(
+								pedido_alterar.adicionaProduto(
 										produto_a_ser_adicionado, Integer
 												.parseInt(textFieldQtd
 														.getText()));
@@ -292,13 +288,13 @@ public class JFatualizaPedido extends JFrame {
 								textFieldQtd.setText("");
 								JOptionPane.showMessageDialog(
 										JFatualizaPedido.this,
-										"Produto adicionado.\nComanda ["
-												+ comanda_alterar.getNumero()
+										"Produto adicionado.\nPedido ["
+												+ pedido_alterar.getNumero()
 												+ "] atualizada com sucesso!",
 										"Sucesso",
 										JOptionPane.INFORMATION_MESSAGE);
 
-								// Se não, exibe uma mensagem de erro
+								// Se n�o, exibe uma mensagem de erro
 							} else {
 
 								textFieldCodPedido.setText("");
@@ -306,18 +302,18 @@ public class JFatualizaPedido extends JFrame {
 								textFieldQtd.setText("");
 								JOptionPane.showMessageDialog(
 										JFatualizaPedido.this,
-										"Produto não encontrado!", "Erro",
+										"Produto n�o encontrado!", "Erro",
 										JOptionPane.ERROR_MESSAGE);
 
 							}
 
-						}// Fecha o else para produto não encontrado na comanda
+						}// Fecha o else para produto nao encontrado no pedido
 
-						// Else para comanda não econtrada
+						// Else para pedido nao econtrado
 					} else {
 
 						JOptionPane.showMessageDialog(JFatualizaPedido.this,
-								"Comanda não encontrada!", "Erro",
+								"Pedido n�o encontrado!", "Erro",
 								JOptionPane.ERROR_MESSAGE);
 
 					}

@@ -22,31 +22,21 @@ import control.Validacao;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+/**
+ * Esta classe tem como objetivo criar a interface grafica para cadastro o garcom.
+ *. 
+ *@author Marco Lucas,Nayara,Nilvando.
+ *@version 1.0
+ *  
+ */
 public class JFcadastroGarcom extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFieldNome;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JFcadastroGarcom frame = new JFcadastroGarcom();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	
-	/**
-	 * Create the frame.
-	 */
+/**
+ * Este metodo pertence a criação da tela cadastroGarcom
+ */
 	public JFcadastroGarcom() {
 		
 		JButton btnSalvar = new JButton("Salvar");
@@ -75,18 +65,18 @@ public class JFcadastroGarcom extends JFrame {
 		textFieldNome.setColumns(10);
 
 		btnSalvar.addActionListener(new ActionListener() {
+			//EVENTO DO BOTAO SALVAR
 			public void actionPerformed(ActionEvent arg0) {
 				btnSalvarActionPerformed(arg0);
 			}
-
+			
 			private void btnSalvarActionPerformed(ActionEvent arg0) {
 				String nome = textFieldNome.getText();
 				CadGarcom cadastro = new CadGarcom();
 				Garcom novo = new Garcom(nome);
 				Validacao valida = new Validacao();
-
+	            //TODOS OS CAMPOS EM BRANCO DA TELA PREENCHIDOS,É CRIADO UM NOVO GARÇOM 
 				if (valida.valida(nome) == true) {
-					//cadastro.iniciarGarcom();
 					cadastro.adicionaGarcom(novo);
 					cadastro.gravarGarcom();
 					JOptionPane.showMessageDialog(null,
@@ -106,6 +96,7 @@ public class JFcadastroGarcom extends JFrame {
 		contentPane.add(btnSalvar);
 
 		btnCancelar.addActionListener(new ActionListener() {
+			//EVENTO DO BOTAO CANCELAR.
 			public void actionPerformed(ActionEvent arg0) {
 				btnCancelarActionPerformed(arg0);
 			}

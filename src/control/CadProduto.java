@@ -13,6 +13,15 @@ import javax.swing.JOptionPane;
 
 import codigo.Produto;
 
+/**
+ * Esta classe tem como objetivo cadastrar o Objeto Produto em sua respectiva
+ * lista.
+ * 
+ * @author Marcos Lucas,Nayara,Nilvando.
+ * 
+ * @version 1.0
+ * 
+ */
 public class CadProduto {
 	private static LinkedList<Produto> produtos = new LinkedList<Produto>();
 	private DataOutputStream outputProduto;
@@ -20,7 +29,6 @@ public class CadProduto {
 	private boolean moreRecordsProduto = true;
 
 	public CadProduto() {
-		// iniciarProduto();
 	}
 
 	public static LinkedList<Produto> getProdutos() {
@@ -30,7 +38,11 @@ public class CadProduto {
 	public static void setProdutos(LinkedList<Produto> produtos) {
 		CadProduto.produtos = produtos;
 	}
-
+	
+	/**
+	 * Metodo tem como função abrir o arquivo do tipo TXT e cria-lo,caso o mesmo
+	 * ja tenha sido gerado ele apenas irá ler o arquivo e istanciará o objeto.
+	 */
 	public void iniciarProduto() {
 		File arquivo = new File("Produtos.txt");
 		try {
@@ -42,7 +54,6 @@ public class CadProduto {
 			}
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -57,7 +68,7 @@ public class CadProduto {
 			System.exit(1);
 		}
 
-		// InstanciarProduto
+		// Instancia Produto
 		String nome;
 		String descricao;
 		int codigo;
@@ -98,17 +109,22 @@ public class CadProduto {
 
 	}
 
-	// Metodo para adicionar um objeto Produto a LinkedList "produtos"
+	/**
+	 * Metodo para adicionar um objeto Produto a LinkedList "produtos"
+	 * @param p Adicionar um produto por referencia
+	 */
 	public static void adicionaProduto(Produto p) {
 		produtos.add(p);
 	}
-
+	/**
+	 * Metodo para abrir o arquivo e grava-lo,caso ocorra algum erro uma mensagem será retornada.
+	 * 
+	 */
 	public void gravarProduto() {
 		// Abre arquivo para gravar
 		try {
 			outputProduto = new DataOutputStream(new FileOutputStream(
 					"Produtos.txt", false));
-			// JOptionPane.showMessageDialog(null,"Produto salvo com sucesso!");
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null,
 					"Falha na Abertura do Arquivo para Gravação", "Erro",

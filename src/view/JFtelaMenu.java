@@ -29,10 +29,11 @@ import java.awt.Window.Type;
 public class JFtelaMenu extends JFrame {
 
 	private JPanel contentPane;
-
-	/**
-	 * Launch the application.
-	 */
+/**
+ * Esta classe tem o intuito de gerencias todas as outras telas do restaurante
+ * @see JFcadastroGarcom,JFConsultaPedido,JFaberturaCaixa,JFatualizaPedido,JFcadastroPedido,JFcadastroProduto
+ * @param args main
+ */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -47,7 +48,7 @@ public class JFtelaMenu extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Criação da tela Menu.
 	 */
 	public JFtelaMenu() {
 		setResizable(false);

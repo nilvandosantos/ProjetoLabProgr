@@ -13,6 +13,16 @@ import javax.swing.JOptionPane;
 
 import codigo.Garcom;
 
+/**
+ * Esta classe tem como objetivo cadastrar o garçom e verificar se o mesmo ja exite na lista, na qual
+ * será armazenado apos a conclusão do cadastro.
+ * 
+ * @author Marcos Lucas,Nayara,Nilvando.
+ * 
+ * @version 1.0
+ *
+ */
+
 public class CadGarcom {
 
 	private static LinkedList<Garcom> garcons = new LinkedList<Garcom>();
@@ -27,14 +37,18 @@ public class CadGarcom {
 		CadGarcom.garcons = garcons;
 	}
 	public CadGarcom(){
-		//iniciarGarcom();
+		
 	}
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 	}
 
-
+	/**
+	 * Metodo criado para gerar um novo arquivo do tipo TXT,caso o mesmo ja tenha sido gerado ele 
+	 * apenas irá ler o arquivo e istanciará o objeto.
+	 * @see- class Garcom.
+	 */
+		
 	public void iniciarGarcom() {
 
 		File arquivo = new File("Garcons.txt");
@@ -47,7 +61,6 @@ public class CadGarcom {
 			}
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -61,13 +74,13 @@ public class CadGarcom {
 			System.exit(1);
 		}
 
-		// InstanciarGarcom
+		// Instancia Garcom
 		String nome;
 		int codigo;
 		double gorjeta;
 		double totalGorjeta;
 
-		// Carrega os garcons do arquivo para as coleÃ§Ãµes
+		// Carrega os garcons do arquivo para as coleções
 		try {
 			while (moreRecordsGarcom) {
 				nome = inputGarcom.readUTF();
@@ -100,7 +113,9 @@ public class CadGarcom {
 
 	}
 
-	// Metodo para adicionar um objeto Garcom a LinkedList "garcons"
+	/**
+	 * Metodo para adicionar um objeto Garcom a LinkedList "garcons"
+	 */
 	public static void adicionaGarcom(Garcom g) {
 		garcons.add(g);
 	}
@@ -110,7 +125,6 @@ public class CadGarcom {
 		try {
 			outputGarcom = new DataOutputStream(new FileOutputStream(
 					"Garcons.txt", false));
-		//	JOptionPane.showMessageDialog(null,	"Garçon salvo com sucesso!"+" Nome: "+  +" \n\nCodigo: " );
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null,
 					"Falha na Abertura do Arquivo para Gravação", "Erro",
@@ -144,6 +158,9 @@ public class CadGarcom {
 			System.exit(1);
 		}
 	}
+	/**
+	 * Este metodo tem como objetivo exibir em tela os garçons que foram salvos 
+	 */
 	public String ajuda() {
 		String ajuda="";
 		for (Garcom a : garcons) {
