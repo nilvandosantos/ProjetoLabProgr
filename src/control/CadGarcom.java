@@ -168,4 +168,9 @@ public class CadGarcom {
 		}
 		return ajuda;
 	}
+	public static Garcom retornaUmGarcom(int indice_garcom) {
+
+        return garcons.get(indice_garcom);
+
+    }
 }
