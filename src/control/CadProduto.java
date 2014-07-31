@@ -11,6 +11,7 @@ import java.util.LinkedList;
 
 import javax.swing.JOptionPane;
 
+import codigo.Garcom;
 import codigo.Produto;
 
 /**
@@ -160,4 +161,19 @@ public class CadProduto {
 		}
 	}
 
+	/**
+	 * Este metodo tem como objetivo exibir em tela os garçons que foram salvos 
+	 */
+	public String ajuda() {
+		String ajuda="";
+		for (Produto a : produtos) {
+			ajuda = ajuda + (a.getCodigo()+ " "+ a.getNome()+"\n" + " " + a.getDescricao() +" "+ a.getPreco());
+		}
+		return ajuda;
+	}
+	public static Produto retornaUmProduto(int indice_produto) {
+
+        return produtos.get(indice_produto);
+
+    }
 }
