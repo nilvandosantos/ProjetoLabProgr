@@ -39,9 +39,7 @@ public class CadGarcom {
 	public CadGarcom(){
 		
 	}
-	public static void main(String[] args) {
-
-	}
+	
 
 	/**
 	 * Metodo criado para gerar um novo arquivo do tipo TXT,caso o mesmo ja tenha sido gerado ele 
