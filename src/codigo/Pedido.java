@@ -8,6 +8,7 @@ import java.util.*;
  * caixa, e composição com as classes Garcom e Produto.
  * @author Marcos Lucas,Nayara,Nilvando
  * @version 1.0
+ * 
  */
 
 public class Pedido {
@@ -158,7 +159,7 @@ public class Pedido {
      * método para calcular preoço do pedido
      * @return produtos
      */
-    public double calculaValorpedido() {
+    public double calculaValorPedido() {
 
         double valor = 0;
         int indice = 0;
@@ -199,6 +200,6 @@ public class Pedido {
 
         }
 
-        return "Nome do Garçom: " + garcons.getNome() + "\nID Garçom: " + garcons.getCodigo() + "\nNúmero da pedido: " + numero + "\n\n-- Produtos e quantidade --\n\n" + produtos_e_quantidade + "\nValor atual da pedido: " + calculaValorpedido();
+        return "Nome do Garçom: " + garcons.getNome() + "\nID Garçom: " + garcons.getCodigo() + "\nNúmero da pedido: " + numero + "\n\n-- Produtos e quantidade --\n\n" + produtos_e_quantidade + "\nValor atual da pedido: " + calculaValorPedido();
     }
 }
