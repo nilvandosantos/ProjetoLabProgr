@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 
 import control.CadGarcom;
 import control.CadProduto;
+import control.CoordCaixa;
 
 import codigo.Balanco;
 
@@ -56,6 +57,8 @@ public class JFtelaMenu extends JFrame {
 		garcom.iniciarGarcom();
 		CadProduto produto = new CadProduto();
 		produto.iniciarProduto();
+		CoordCaixa caixa = new CoordCaixa();
+		caixa.iniciarCaixa();
 		setTitle("Menu Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 739, 495);
@@ -123,9 +126,19 @@ public class JFtelaMenu extends JFrame {
 		mnPedido.add(mntmConsulta);
 
 		JMenuItem mntmAtualiza = new JMenuItem("Atualiza");
+		mntmAtualiza.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new JFatualizaPedido().setVisible(true);
+			}
+		});
 		mnPedido.add(mntmAtualiza);
 
 		JMenuItem mntmEncerra = new JMenuItem("Encerra");
+		mntmEncerra.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new JFencerraPedido().setVisible(true);
+			}
+		});
 		mnPedido.add(mntmEncerra);
 
 		JMenu mnPesquisa = new JMenu("Pesquisa");
@@ -141,6 +154,11 @@ public class JFtelaMenu extends JFrame {
 		menuBar.add(mnConsultas);
 
 		JMenuItem mntmGorjeta = new JMenuItem("Gorjeta");
+		mntmGorjeta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new JFgorjeta().setVisible(true);
+			}
+		});
 		mnConsultas.add(mntmGorjeta);
 
 		JMenu mnVendas = new JMenu("Vendas");
@@ -174,4 +192,5 @@ public class JFtelaMenu extends JFrame {
 		lblNewLabel.setBounds(255, 71, 206, 287);
 		contentPane.add(lblNewLabel);
 	}
+	
 }
