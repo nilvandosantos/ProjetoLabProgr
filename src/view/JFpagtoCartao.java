@@ -39,7 +39,7 @@ public class JFpagtoCartao extends JFrame {
 	private JTextField textFieldValParc;
 	private JFencerraPedido jFa_ser_fechado1;
 	private JFpedidoEncerrado jFa_ser_fechado2;
-	private int indice_comanda;
+	private int indice_pedido;
 	private int indice_caixa;
 	private Pedido c;
 	private double subtotal;
@@ -48,8 +48,8 @@ public class JFpagtoCartao extends JFrame {
 	
 
 	/**
-	 * Create the frame.
-	 * @param indice_comanda 
+	 * Cria a tela para a subclasse pagtoCartao.
+	 * @param indice_pedido 
 	 * @param indice_caixa 
 	 * @param jFpedidoEncerrado 
 	 * @param jFa_ser_fechado1 
@@ -58,7 +58,7 @@ public class JFpagtoCartao extends JFrame {
 		this.jFa_ser_fechado1 = jFa_ser_fechado1;
         this.jFa_ser_fechado2 = jFpedidoEncerrado;
         this.indice_caixa = ind_caixa;
-        this.indice_comanda = ind_pedido;
+        this.indice_pedido = ind_pedido;
 		
 		setResizable(false);
 		setTitle("Cart\u00E3o");
@@ -101,13 +101,13 @@ public class JFpagtoCartao extends JFrame {
 		            pressionado = true;
 		            try {
 		                if (Integer.parseInt(textFieldParcelas.getText()) <= 0) {
-		                            JOptionPane.showMessageDialog(null, "Digite um valor válido!", "Entrada inválida", JOptionPane.ERROR_MESSAGE);
+		                            JOptionPane.showMessageDialog(null, "Digite um valor valido!", "Entrada invalida", JOptionPane.ERROR_MESSAGE);
 		                            textFieldParcelas.setText("");
 		                            return;
 		                        }
 		                textFieldValParc.setText("" + d.format((total / Double.parseDouble(textFieldParcelas.getText()))));
 		            } catch (NumberFormatException n) {
-		                JOptionPane.showMessageDialog(null, "Digite um valor válido!", "Entrada inválida", JOptionPane.ERROR_MESSAGE);
+		                JOptionPane.showMessageDialog(null, "Digite um valor valido!", "Entrada invalida", JOptionPane.ERROR_MESSAGE);
 		                textFieldParcelas.setText("");
 		                return;
 		            }
@@ -136,13 +136,13 @@ public class JFpagtoCartao extends JFrame {
 			        pressionado = true;
 			        try {
 			            if (Integer.parseInt(textFieldParcelas.getText()) <= 0) {
-			                        JOptionPane.showMessageDialog(null, "Digite um valor válido!", "Entrada inválida", JOptionPane.ERROR_MESSAGE);
+			                        JOptionPane.showMessageDialog(null, "Digite um valor valido!", "Entrada invalida", JOptionPane.ERROR_MESSAGE);
 			                        textFieldParcelas.setText("");
 			                        return;
 			                    }
 			            textFieldValParc.setText("" + d.format((total / Double.parseDouble(textFieldParcelas.getText()))));
 			        } catch (NumberFormatException n) {
-			            JOptionPane.showMessageDialog(null, "Digite um valor válido!", "Entrada inválida", JOptionPane.ERROR_MESSAGE);
+			            JOptionPane.showMessageDialog(null, "Digite um valor valido!", "Entrada invalida", JOptionPane.ERROR_MESSAGE);
 			            textFieldParcelas.setText("");
 			            return;
 			        }
@@ -151,57 +151,57 @@ public class JFpagtoCartao extends JFrame {
 		});
 		btnEncerra.addActionListener(new ActionListener() {
 			
-			private int indice_do_produto_na_comanda;
+			private int indice_do_produto_na_pedido;
 
 			public void actionPerformed(ActionEvent arg0) {
 				Cartao d;
 
-		        //Confere se os campos estão devidamente preenchidos
+		        //Confere se os campos est�o devidamente preenchidos
 		        if (textFieldParcelas.getText().equals("")) {
 		            JOptionPane.showMessageDialog(JFpagtoCartao.this, "Preencha o campo!", "Erro", JOptionPane.ERROR_MESSAGE);
 		        } else if (!pressionado) {
-		            JOptionPane.showMessageDialog(JFpagtoCartao.this, "Pressione a tecla Enter para realizar o cálculo das parcelas!", "Erro", JOptionPane.ERROR_MESSAGE);
+		            JOptionPane.showMessageDialog(JFpagtoCartao.this, "Pressione a tecla Enter para realizar o calculo das parcelas!", "Erro", JOptionPane.ERROR_MESSAGE);
 		        } else {
 
 		            try {
 		                if (Integer.parseInt(textFieldParcelas.getText()) <= 0) {
-		                    JOptionPane.showMessageDialog(null, "Digite um valor válido!", "Entrada inválida", JOptionPane.ERROR_MESSAGE);
+		                    JOptionPane.showMessageDialog(null, "Digite um valor valido!", "Entrada invalida", JOptionPane.ERROR_MESSAGE);
 		                    textFieldParcelas.setText("");
 		                    return;
 		                }
 		                d = new Cartao(total, total, Integer.parseInt(textFieldParcelas.getText()));
 		            } catch (NumberFormatException n) {
-		                JOptionPane.showMessageDialog(null, "Digite um valor válido de parcelas!", "Entrada inválida", JOptionPane.ERROR_MESSAGE);
+		                JOptionPane.showMessageDialog(null, "Digite um valor valido de parcelas!", "Entrada invalida", JOptionPane.ERROR_MESSAGE);
 		                textFieldParcelas.setText("");
 		                return;
 		            }
 
-		            //Calcula a gorjeta do garçom
+		            //Calcula a gorjeta do gar�om
 		            for (Garcom g : CadGarcom.getGarcons()) {
 		                if (g == c.getGarcons()) {
 		                    g.setTotalGorjeta(total - subtotal);
 		                }
 		            }
-
-		            for (Produto produto_na_comanda : c.retornaProdutos()) {
-
+		            //For-each varre a LinkedList produtos para verificar se o mesmo esta cadastrado
+		            for (Produto produto_na_pedido : c.retornaProdutos()) {
+		            	
 		                for (Produto produto_cadastrado : CadProduto.getProdutos()) {
 
-		                    if (produto_na_comanda == produto_cadastrado) {
-		                        int quantidade_de_produtos_vendidos = c.getQtde(indice_do_produto_na_comanda);
+		                    if (produto_na_pedido == produto_cadastrado) {
+		                        int quantidade_de_produtos_vendidos = c.getQtde(indice_do_produto_na_pedido);
 		                        produto_cadastrado.atualizaQuantidadeVendida(quantidade_de_produtos_vendidos);
 		                    }
 
 		                }
 
-		                indice_do_produto_na_comanda++;
+		                indice_do_produto_na_pedido++;
 
 		            }
 
-		            //Seta os dados da comanda
+		            //Seta os dados do pedido
 		            Calendar hora_temp = Calendar.getInstance();
 		            String hora = "" + hora_temp.get(Calendar.HOUR_OF_DAY) + ":" + hora_temp.get(Calendar.MINUTE) + ":" + hora_temp.get(Calendar.SECOND);
-		            double temp = CoordPedido.retornaUmPedido(indice_caixa, indice_comanda).calculaValorPedido();
+		            double temp = CoordPedido.retornaUmPedido(indice_caixa, indice_pedido).calculaValorPedido();
 		            temp = temp + temp * 0.1;
 		            CoordCaixa.retornaUmCaixa(indice_caixa).atualizaTotalCaixa(temp);
 		            c.setPagamento(d);
@@ -210,7 +210,7 @@ public class JFpagtoCartao extends JFrame {
 
 
 
-		            JOptionPane.showMessageDialog(JFpagtoCartao.this, "Comanda finalizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+		            JOptionPane.showMessageDialog(JFpagtoCartao.this, "pedido finalizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
 		            dispose();
 
@@ -229,9 +229,12 @@ public class JFpagtoCartao extends JFrame {
 		btnCancela.setBounds(139, 122, 89, 23);
 		contentPane.add(btnCancela);
 	}
+	/**
+	 * Metodo para inicar a com as informa��es referente aos valores do pedido
+	 */
 	public void iniciar() {
 
-        c = CoordPedido.retornaUmPedido(indice_caixa, indice_comanda);
+        c = CoordPedido.retornaUmPedido(indice_caixa, indice_pedido);
         subtotal = c.calculaValorPedido();
         total = subtotal + subtotal * 0.1;
 

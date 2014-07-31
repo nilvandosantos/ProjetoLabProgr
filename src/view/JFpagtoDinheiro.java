@@ -44,7 +44,7 @@ public class JFpagtoDinheiro extends JFrame {
 	private int indice_do_produto_no_pedido;
 
 	/**
-	 * Create the frame.
+	 * Cria a tela para a subclasse pagtoDinheiro.
 	 * @param indice_pedido 
 	 * @param indice_caixa 
 	 * @param jFpedidoEncerrado 
@@ -133,33 +133,33 @@ public class JFpagtoDinheiro extends JFrame {
 		        if (textFieldValRec.getText().equals("")) {
 		            JOptionPane.showMessageDialog(JFpagtoDinheiro.this, "Preencha o campo!", "Erro", JOptionPane.ERROR_MESSAGE);
 		        } else if (!pressionado) {
-		            JOptionPane.showMessageDialog(JFpagtoDinheiro.this, "Pressiona a tecla Enter para realizar cálculo do troco!", "Erro", JOptionPane.ERROR_MESSAGE);
+		            JOptionPane.showMessageDialog(JFpagtoDinheiro.this, "Pressiona a tecla Enter para realizar calculo do troco!", "Erro", JOptionPane.ERROR_MESSAGE);
 		        } else {
 		            try {
 		                if (Double.parseDouble(textFieldValRec.getText()) <= 0) {
-		                            JOptionPane.showMessageDialog(null, "Digite um valor válido!", "Entrada inválida", JOptionPane.ERROR_MESSAGE);
+		                            JOptionPane.showMessageDialog(null, "Digite um valor valido!", "Entrada invalida", JOptionPane.ERROR_MESSAGE);
 		                            textFieldValRec.setText("");
 		                            return;
 		                        }
 		                d = new Dinheiro(total, Double.parseDouble(textFieldValRec.getText()));
 		            } catch (NumberFormatException n) {
-		                JOptionPane.showMessageDialog(null, "Digite um valor válido!", "Entrada inválida", JOptionPane.ERROR_MESSAGE);
+		                JOptionPane.showMessageDialog(null, "Digite um valor valido!", "Entrada invalida", JOptionPane.ERROR_MESSAGE);
 		                textFieldValRec.setText("");
 		                return;
 		            }
 
-		            //Calcula a gorjeta do garçom
+		            //Calcula a gorjeta do gar�om
 		            for (Garcom g : CadGarcom.getGarcons()) {
 		                if (g == c.getGarcons()) {
 		                    g.setTotalGorjeta(total - subtotal);
 		                }
 		            }
-
-		            for (Produto produto_na_comanda : c.retornaProdutos()) {
+		            //For-each varre a LinkedList produtos para verificar se o mesmo esta cadastrado
+		            for (Produto produto_na_pedido : c.retornaProdutos()) {
 
 		                for (Produto produto_cadastrado : CadProduto.getProdutos()) {
 
-		                    if (produto_na_comanda == produto_cadastrado) {
+		                    if (produto_na_pedido == produto_cadastrado) {
 		                        int quantidade_de_produtos_vendidos = c.getQtde(indice_do_produto_no_pedido);
 		                        produto_cadastrado.atualizaQuantidadeVendida(quantidade_de_produtos_vendidos);
 		                    }
@@ -170,7 +170,7 @@ public class JFpagtoDinheiro extends JFrame {
 
 		            }
 
-		            //Seta os dados da comanda encerrada
+		            //Seta os dados da pedido encerrada
 		            Calendar hora_temp = Calendar.getInstance();
 		            String hora = "" + hora_temp.get(Calendar.HOUR_OF_DAY) + ":" + hora_temp.get(Calendar.MINUTE) + ":" + hora_temp.get(Calendar.SECOND);
 		            double temp = CoordPedido.retornaUmPedido(indice_caixa, indice_pedido).calculaValorPedido();
@@ -180,7 +180,7 @@ public class JFpagtoDinheiro extends JFrame {
 		            c.setHora(hora);
 		            c.setPedidoAberta(false);
 
-		            JOptionPane.showMessageDialog(JFpagtoDinheiro.this, "Comanda finalizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+		            JOptionPane.showMessageDialog(JFpagtoDinheiro.this, "pedido finalizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 
 		            dispose();
 
@@ -199,7 +199,9 @@ public class JFpagtoDinheiro extends JFrame {
 		btnCancelar.setBounds(124, 180, 89, 23);
 		contentPane.add(btnCancelar);
 	}
-
+	/**
+	 * Metodo para inicar a com as informa��es referente aos valores do pedido
+	 */
 	public void iniciar() {
 
         c = CoordPedido.retornaUmPedido(indice_caixa, indice_pedido);

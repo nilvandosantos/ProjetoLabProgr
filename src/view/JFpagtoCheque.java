@@ -35,15 +35,15 @@ public class JFpagtoCheque extends JFrame {
 	private double total;
 	private double subtotal;
 	private Pedido c;
-	private int indice_do_produto_na_comanda;
+	private int indice_do_produto_na_pedido;
 	private JFencerraPedido jFa_ser_fechado1;
 	private JFpedidoEncerrado jFa_ser_fechado2;
 	private int indice_caixa;
-	private int indice_comanda;
+	private int indice_pedido;
 	
 	/**
-	 * Create the frame.
-	 * @param indice_comanda 
+	 * Cria a tela para a subclasse pagtoCheque.
+	 * @param indice_pedido 
 	 * @param indice_caixa 
 	 * @param jFpedidoEncerrado 
 	 * @param jFa_ser_fechado1 
@@ -52,7 +52,7 @@ public class JFpagtoCheque extends JFrame {
 		this.jFa_ser_fechado1 = jFa_ser_fechado1;
         this.jFa_ser_fechado2 = jFpedidoEncerrado;
         indice_caixa = indice_cai;
-        indice_comanda = indice_ped;
+        indice_pedido = indice_ped;
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -149,39 +149,39 @@ public class JFpagtoCheque extends JFrame {
 			            String data = "" + txtDia.getText() + "/" + txtMes.getText() + "/" + txtAno.getText();
 			            Cheque d = new Cheque(total, total, data);
 
-			            //Calcula a gorjeta do garÃ§om
+			            //Calcula a gorjeta do garçom
 			            for (Garcom g : CadGarcom.getGarcons()) {
 			                if (g == c.getGarcons()) {
 			                    g.setTotalGorjeta(total - subtotal);
 			                }
 			            }
-
-			            for (Produto produto_na_comanda : c.retornaProdutos()) {
+			            //For-each varre a LinkedList produtos para verificar se o mesmo esta cadastrado
+			            for (Produto produto_na_pedido : c.retornaProdutos()) {
 
 			                for (Produto produto_cadastrado : CadProduto.getProdutos()) {
 
-			                    if (produto_na_comanda == produto_cadastrado) {
-			                        int quantidade_de_produtos_vendidos = c.getQtde(indice_do_produto_na_comanda);
+			                    if (produto_na_pedido == produto_cadastrado) {
+			                        int quantidade_de_produtos_vendidos = c.getQtde(indice_do_produto_na_pedido);
 			                        produto_cadastrado.atualizaQuantidadeVendida(quantidade_de_produtos_vendidos);
 			                    }
 
 			                }
 
-			                indice_do_produto_na_comanda++;
+			                indice_do_produto_na_pedido++;
 
 			            }
 
-			            //Seta os dados da comanda encerrada
+			            //Seta os dados da pedido encerrada
 			            Calendar hora_temp = Calendar.getInstance();
 			            String hora = "" + hora_temp.get(Calendar.HOUR_OF_DAY) + ":" + hora_temp.get(Calendar.MINUTE) + ":" + hora_temp.get(Calendar.SECOND);
-			            double temp = CoordPedido.retornaUmPedido(indice_caixa, indice_comanda).calculaValorPedido();
+			            double temp = CoordPedido.retornaUmPedido(indice_caixa, indice_pedido).calculaValorPedido();
 			            temp = temp + temp * 0.1;
 			            CoordCaixa.retornaUmCaixa(indice_caixa).atualizaTotalCaixa(temp);
 			            c.setPagamento(d);
 			            c.setHora(hora);
 			            c.setPedidoAberta(false);
 
-			            JOptionPane.showMessageDialog(JFpagtoCheque.this, "Comanda finalizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+			            JOptionPane.showMessageDialog(JFpagtoCheque.this, "Pedido finalizada com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
 			        }
 			        dispose();
 			}
@@ -198,9 +198,12 @@ public class JFpagtoCheque extends JFrame {
 		btnCancelar.setBounds(143, 131, 89, 23);
 		contentPane.add(btnCancelar);
 	}
+	/**
+	 * Metodo para inicar a com as informações referente aos valores do pedido
+	 */
 	 public void iniciar() {
 
-	        c = CoordPedido.retornaUmPedido(indice_caixa, indice_comanda);
+	        c = CoordPedido.retornaUmPedido(indice_caixa, indice_pedido);
 	        subtotal = c.calculaValorPedido();
 	        total = subtotal + subtotal * 0.1;
 

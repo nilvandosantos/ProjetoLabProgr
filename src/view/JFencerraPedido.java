@@ -29,26 +29,15 @@ public class JFencerraPedido extends JFrame {
 	private JTextField textFieldCodPed;
 
 	private int indice_caixa;
-	private int indice_comanda;
+	private int indice_pedido;
 	private boolean aux;
+	
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JFencerraPedido frame = new JFencerraPedido();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
+	 * Esta classe tem como objetivo criar a interface grafica para encerrar pedido.
+	 *. 
+	 *@author Marco Lucas,Nayara,Nilvando.
+	 *@version 1.0
+	 *  
 	 */
 	public JFencerraPedido() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -76,8 +65,8 @@ public class JFencerraPedido extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				 boolean achou = false;
 			        indice_caixa = 0;
-			        indice_comanda = 0;
-			        //Verifica se o campo está preenchido
+			        indice_pedido = 0;
+			        //Verifica se o campo esta preenchido
 			        if (textFieldCodPed.getText().equals("")) {
 
 			            JOptionPane.showMessageDialog(JFencerraPedido.this, "Preencha o campo!", "Erro", JOptionPane.ERROR_MESSAGE);
@@ -89,28 +78,28 @@ public class JFencerraPedido extends JFrame {
 			            //For-each para varrer a LinkedList de Caixa           
 			            for (Caixa c : CoordCaixa.retornaCaixas()) {
 
-			                //For-each para varrer a LinkedList de Comanda dentro de um objeto da LinkedList caixa em busca da comanda com ID fornecido
+			                //For-each para varrer a LinkedList do pedido dentro de um objeto da LinkedList caixa em busca da pedido com ID fornecido
 			                for (Pedido d : CoordPedido.retornaPedido(indice_caixa)) {
 
 			                    try {
-			                        //Verifica se a comanda tem o indice fornecido pelo usuário
+			                        //Verifica se o pedido tem o indice fornecido pelo usuario
 			                        if (Integer.parseInt(textFieldCodPed.getText()) <= 0) {
-			                            JOptionPane.showMessageDialog(null, "Digite um valor válido!", "Entrada inválida", JOptionPane.ERROR_MESSAGE);
+			                            JOptionPane.showMessageDialog(null, "Digite um valor valido!", "Entrada invalida", JOptionPane.ERROR_MESSAGE);
 			                            textFieldCodPed.setText("");
 			                            return;
 			                        }
-
+			                        //Caso o produto exista 
 			                        if (d.getNumero().equals(Integer.parseInt(textFieldCodPed.getText())) && d.getPedidoAberto()) {
 			                            achou = true;
 			                            break;
 			                        }
 			                    } catch (NumberFormatException n) {
-			                        JOptionPane.showMessageDialog(null, "Digite um valor válido!", "Entrada inválida", JOptionPane.ERROR_MESSAGE);
+			                        JOptionPane.showMessageDialog(null, "Digite um valor valido!", "Entrada invalida", JOptionPane.ERROR_MESSAGE);
 			                        textFieldCodPed.setText("");
 			                        return;
 			                    }
 
-			                    indice_comanda++;
+			                    indice_pedido++;
 
 			                }
 
@@ -123,11 +112,11 @@ public class JFencerraPedido extends JFrame {
 
 			            if (achou) {
 
-			                new JFpedidoEncerrado(JFencerraPedido.this, indice_caixa, indice_comanda).setVisible(true);
+			                new JFpedidoEncerrado(JFencerraPedido.this, indice_caixa, indice_pedido).setVisible(true);
 
 			            } else {
 
-			                JOptionPane.showMessageDialog(JFencerraPedido.this, "Comanda não encontrada!", "Erro", JOptionPane.ERROR_MESSAGE);
+			                JOptionPane.showMessageDialog(JFencerraPedido.this, "Pedido n�o encontrado!", "Erro", JOptionPane.ERROR_MESSAGE);
 
 			            }
 

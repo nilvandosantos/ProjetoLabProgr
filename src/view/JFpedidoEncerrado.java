@@ -38,9 +38,8 @@ public class JFpedidoEncerrado extends JFrame {
 
 	
 	
-
 	/**
-	 * Create the frame.
+	 * Cria a tela para Encerrar pedido.
 	 */
 	public JFpedidoEncerrado(JFencerraPedido jFa_ser_fechado, int ind_cax,	int ind_ped) {
 		this.jFa_ser_fechado1 = jFa_ser_fechado;
@@ -125,7 +124,9 @@ public class JFpedidoEncerrado extends JFrame {
 		btnCheque.setBounds(220, 153, 89, 23);
 		contentPane.add(btnCheque);
 	}
-
+	/**
+	 * Metodo para inicar a com as informações referente aos valores do pedido
+	 */
 	public void iniciar() {
 
 		c = CoordPedido.retornaUmPedido(indice_caixa, indice_comanda);

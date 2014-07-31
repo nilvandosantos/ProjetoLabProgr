@@ -25,23 +25,7 @@ public class JFgorjeta extends JFrame {
 	private JTextField textField;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JFgorjeta frame = new JFgorjeta();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
+	 * Cria a tela da gorgeta .
 	 */
 	public JFgorjeta() {
 		setResizable(false);
@@ -74,20 +58,22 @@ public class JFgorjeta extends JFrame {
 		        if (textField.getText().equals("")) {
 		            JOptionPane.showMessageDialog(JFgorjeta.this, "Preencha o campo!", "Erro", JOptionPane.ERROR_MESSAGE);
 		        } else {
-
+		        	//For-each varre a LinkedList gar�om
 		            for (Garcom g : CadGarcom.getGarcons()) {
 		                try {
+		                	//Se a gorgeta for menor que zero entra na exe��o
 		                    if (Integer.parseInt(textField.getText()) <= 0) {
-		                            JOptionPane.showMessageDialog(JFgorjeta.this, "Digite um valor válido!", "Entrada inválida", JOptionPane.ERROR_MESSAGE);
+		                            JOptionPane.showMessageDialog(JFgorjeta.this, "Digite um valor valido!", "Entrada inválida", JOptionPane.ERROR_MESSAGE);
 		                            textField.setText("");
 		                            return;
 		                        }
+		                    //Se o codigo do gar�om existe na lista
 		                    if (g.getCodigo() == Integer.parseInt(textField.getText())) {
 		                        achou_garcom = true;
 		                        break;
 		                    }
 		                } catch (NumberFormatException n) {
-		                    JOptionPane.showMessageDialog(null, "Digite um valor válido!", "Entrada inválida", JOptionPane.ERROR_MESSAGE);
+		                    JOptionPane.showMessageDialog(null, "Digite um valor valido!", "Entrada invalida", JOptionPane.ERROR_MESSAGE);
 		                    textField.setText("");
 		                    return;
 		                }
@@ -95,8 +81,9 @@ public class JFgorjeta extends JFrame {
 
 		            }
 
-		            //Verifica se o garçom foi ou não encontrado.
-		            //Em caso positivo, retorna o total de gorjetas dele.
+		            /*Verifica se o gar�om foi ou n�o encontrado.
+		             * em caso positivo, retorna o total de gorjetas do mesmo.
+		             */
 		            if (achou_garcom) {
 		            	textField.setText("");
 		                JOptionPane.showMessageDialog(JFgorjeta.this, "" + CadGarcom.retornaUmGarcom(indice_garcom).toString(), "Sucesso", JOptionPane.INFORMATION_MESSAGE);
