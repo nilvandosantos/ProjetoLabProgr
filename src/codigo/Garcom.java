@@ -21,7 +21,6 @@ public class Garcom {
     private double totalGorjeta;
     private static int codigoDeTodosOsGarcons = 1000;
 
-    //Construtor cadastrar o garçon
     public Garcom(String nome) {
         this.nome = nome;
         this.codigo = codigoDeTodosOsGarcons;
@@ -39,8 +38,7 @@ public class Garcom {
         
     }
 
-    //Construtor utilizado para criar um novo objeto
-    //para consultar garçons
+    //Construtor utilizado para criar um novo objet para consultar garçons
     public Garcom() {
         this.nome = "";
         this.codigo = 0;
@@ -48,10 +46,7 @@ public class Garcom {
         totalGorjeta = 0;
     }
 
-    /**
-     * Metodo para retorno do codigo do garçom
-     * @return int codigo.
-     */
+    
     public int getCodigo() {
         return codigo;
     }
@@ -59,11 +54,7 @@ public class Garcom {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }  
-/**
- * Metodo para retorno da gorjeta do garçom apos o encerramento do pedido 
- * de cada mesa que o mesmo atender.
- * @return double gorjeta.
- */
+
     public double getGorjeta() {
         return gorjeta;
     }
@@ -82,10 +73,7 @@ public class Garcom {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    /**
-     * Metodo para retorno da gorjeta do garçom apos o encerramento do caixa
-     * @return double Totalgorjeta.
-     */
+    
     public double getTotalGorjeta() {
         return totalGorjeta;
     }

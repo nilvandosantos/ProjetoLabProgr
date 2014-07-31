@@ -1,17 +1,17 @@
-/*
- * CLASSE CAIXA
- *
- * A classe Caixa é responsável pelo controle monetário do restaurante.
- * Ela que vai realizar todas as tarefas referentes a balanço total e afins.
- *
- * ATRIBUTOS PRINCIPAIS
- * *VALOR INICIAL - Inicializa o caixa, determinando a quantidade inicial
- *  de dinheiro dentro do mesmo;
- * *COMANDAS - Array que armazena todas as comandas do dia.
- */
+
 package codigo;
 
 import java.util.*;
+
+/**
+ * Esta classe Caixa é responsável pelo controle monetário do restaurante.
+ * Ela que vai realizar todas as tarefas referentes a balanço total e afins.
+ *
+ * 
+ * @author Marco Lucas,Nayara,Nilvando.
+ * @version 1.0
+ *
+ */
 
 public class Caixa {
 
@@ -20,7 +20,7 @@ public class Caixa {
     private LinkedList<Pedido> pedidos = new LinkedList<Pedido>();
     private String data;
 
-    //Construtor
+    
     public Caixa(double valor_inicial, String data) {
         this.valor_inicial = valor_inicial;
         this.data = data;
@@ -47,7 +47,10 @@ public class Caixa {
 
     }
 
-    //Método para adiconar uma comanda na linkedlist da classe Caixa
+    /**
+     * Este metodo tem como objetivo adiconar um pedido na linkedlist da classe Caixa
+     * 
+     */
     public void adicionaPedido(Pedido c) {
         pedidos.add(c);
     }
