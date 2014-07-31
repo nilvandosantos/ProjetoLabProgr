@@ -61,6 +61,7 @@ public class JFaberturaCaixa extends JFrame {
 				double valorInicial;
 
 				CoordCaixa caixa = new CoordCaixa();
+				caixa.iniciarCaixa();
 				Caixa novoCaixa;
 				Validacao valida = new Validacao();
 				//CAMPO VALOR ESTA PREENCHIDO

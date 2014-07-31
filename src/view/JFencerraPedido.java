@@ -25,6 +25,7 @@ import java.awt.event.ActionEvent;
 
 public class JFencerraPedido extends JFrame {
 
+	static boolean aux1;
 	private JPanel contentPane;
 	private JTextField textFieldCodPed;
 

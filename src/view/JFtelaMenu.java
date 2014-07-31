@@ -1,6 +1,5 @@
 package view;
 
-
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
@@ -16,8 +15,10 @@ import javax.swing.JOptionPane;
 
 import control.CadGarcom;
 import control.CadProduto;
+import control.CoordCaixa;
 
 import codigo.Balanco;
+import codigo.Produto;
 
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
@@ -56,6 +57,8 @@ public class JFtelaMenu extends JFrame {
 		garcom.iniciarGarcom();
 		CadProduto produto = new CadProduto();
 		produto.iniciarProduto();
+		CoordCaixa caixa = new CoordCaixa();
+		caixa.iniciarCaixa();
 		setTitle("Menu Principal");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 739, 495);
@@ -123,24 +126,51 @@ public class JFtelaMenu extends JFrame {
 		mnPedido.add(mntmConsulta);
 
 		JMenuItem mntmAtualiza = new JMenuItem("Atualiza");
+		mntmAtualiza.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new JFatualizaPedido().setVisible(true);
+			}
+		});
 		mnPedido.add(mntmAtualiza);
 
 		JMenuItem mntmEncerra = new JMenuItem("Encerra");
+		mntmEncerra.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new JFencerraPedido().setVisible(true);
+			}
+		});
 		mnPedido.add(mntmEncerra);
 
 		JMenu mnPesquisa = new JMenu("Pesquisa");
 		menuBar.add(mnPesquisa);
 
 		JMenuItem mntmGarom_1 = new JMenuItem("Gar\u00E7om");
+		mntmGarom_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CadGarcom ajuda = new CadGarcom();
+                JOptionPane.showMessageDialog(null, "" + ajuda.ajuda(), "CÛdigos dos GarÁons", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 		mnPesquisa.add(mntmGarom_1);
 
 		JMenuItem mntmProduto = new JMenuItem("Produto");
+		mntmProduto.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				CadProduto ajuda = new CadProduto();
+                JOptionPane.showMessageDialog(null, "" + ajuda.ajuda(), "CÛdigos dos Produtos", JOptionPane.INFORMATION_MESSAGE);
+			}
+		});
 		mnPesquisa.add(mntmProduto);
 
 		JMenu mnConsultas = new JMenu("Consulta");
 		menuBar.add(mnConsultas);
 
 		JMenuItem mntmGorjeta = new JMenuItem("Gorjeta");
+		mntmGorjeta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new JFgorjeta().setVisible(true);
+			}
+		});
 		mnConsultas.add(mntmGorjeta);
 
 		JMenu mnVendas = new JMenu("Vendas");
@@ -148,6 +178,44 @@ public class JFtelaMenu extends JFrame {
 
 		JMenuItem mntmProdutosMaisVendidos = new JMenuItem(
 				"Produtos Mais Vendidos");
+		mntmProdutosMaisVendidos.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int produto_mais_vendido = 0;
+		        int indice_do_mais_vendido = 0;
+		        int indice = 0;
+		        
+		        if (JFencerraPedido.aux1) {
+		            //Verifica a quantidade de produtos existente
+		            if (CadProduto.getProdutos().size() == 0 || CadProduto.getProdutos().size() == 1) {
+		                if (CadProduto.getProdutos().size() == 0) {
+		                    JOptionPane.showMessageDialog(null, "ERRO: Nenhum produto cadastrado!", "Erro", JOptionPane.ERROR_MESSAGE);
+		                } else {
+		                    JOptionPane.showMessageDialog(null, "ERRO: Apenas um produto cadastrado, imposs√≠vel fazer compara√ß√£o", "Erro", JOptionPane.ERROR_MESSAGE);
+
+		                }
+		            } else {
+
+		                //For-each para varrer a linkedList de protudos
+		                for (Produto p : CadProduto.getProdutos()) {
+
+		                    //Verifica se a quantidade vendida de produtos √© a maior se sim, guarda este indice
+		                    if (p.getQuantidadeVendida() > produto_mais_vendido) {
+		                        produto_mais_vendido = p.getQuantidadeVendida();
+		                        indice_do_mais_vendido = indice;
+		                    }
+
+		                    indice++;
+
+		                }
+
+		                //Exibe o produto mais vendido de acordo com o indice
+		                JOptionPane.showMessageDialog(null, "Produto mais vendido at√© o momento:\n\n" + CadProduto.retornaUmProduto(indice_do_mais_vendido).toString(), "Produto mais vendido", JOptionPane.INFORMATION_MESSAGE);
+		            }
+		        } else {
+		            JOptionPane.showMessageDialog(null, "nenhuma comanda encerrada");
+		        }
+			}
+		});
 		mnVendas.add(mntmProdutosMaisVendidos);
 
 		JMenuItem mntmProdutosMenosVendidos = new JMenuItem(
@@ -174,4 +242,5 @@ public class JFtelaMenu extends JFrame {
 		lblNewLabel.setBounds(255, 71, 206, 287);
 		contentPane.add(lblNewLabel);
 	}
+	
 }
