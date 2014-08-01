@@ -31,7 +31,7 @@ public class JFencerraPedido extends JFrame {
 
 	private int indice_caixa;
 	private int indice_pedido;
-	private boolean aux;
+	static boolean aux;
 	
 	/**
 	 * Esta classe tem como objetivo criar a interface grafica para encerrar pedido.

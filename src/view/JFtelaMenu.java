@@ -184,7 +184,7 @@ public class JFtelaMenu extends JFrame {
 		        int indice_do_mais_vendido = 0;
 		        int indice = 0;
 		        
-		        if (JFencerraPedido.aux1) {
+		        if (JFencerraPedido.aux) {
 		            //Verifica a quantidade de produtos existente
 		            if (CadProduto.getProdutos().size() == 0 || CadProduto.getProdutos().size() == 1) {
 		                if (CadProduto.getProdutos().size() == 0) {

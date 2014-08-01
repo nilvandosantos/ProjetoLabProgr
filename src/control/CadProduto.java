@@ -167,7 +167,7 @@ public class CadProduto {
 	public String ajuda() {
 		String ajuda="";
 		for (Produto a : produtos) {
-			ajuda = ajuda + (a.getCodigo()+ " "+ a.getNome()+"\n" + " " + a.getDescricao() +" "+ a.getPreco());
+			ajuda = ajuda + (a.getCodigo()+ " "+ a.getNome() + " " + a.getDescricao() +" "+ a.getPreco() + "\n");
 		}
 		return ajuda;
 	}
