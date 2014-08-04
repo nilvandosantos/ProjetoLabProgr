@@ -56,7 +56,10 @@ public class JFpagtoDinheiro extends JFrame {
         indice_caixa = indice_cai;
         indice_pedido = indice_ped;
 		
-		setTitle("Dinheiro");
+        JButton btnEncerrar = new JButton("Encerrar");
+        JButton btnCancelar = new JButton("Cancelar");
+		
+        setTitle("Dinheiro");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 229, 254);
@@ -109,7 +112,6 @@ public class JFpagtoDinheiro extends JFrame {
 		contentPane.add(textFieldTroco);
 		textFieldTroco.setColumns(10);
 		
-		JButton btnEncerrar = new JButton("Encerrar");
 		btnEncerrar.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
@@ -190,7 +192,6 @@ public class JFpagtoDinheiro extends JFrame {
 		btnEncerrar.setBounds(14, 180, 89, 23);
 		contentPane.add(btnEncerrar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();

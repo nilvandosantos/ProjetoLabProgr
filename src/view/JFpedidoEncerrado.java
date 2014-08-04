@@ -46,6 +46,10 @@ public class JFpedidoEncerrado extends JFrame {
 		indice_caixa = ind_cax;
 		indice_comanda = ind_ped;
 		
+		JButton btnDinheiro = new JButton("Dinheiro");
+		JButton btnCarto = new JButton("Cart\u00E3o");
+		JButton btnCheque = new JButton("Cheque");
+		
 		setFont(new Font("Times New Roman", Font.BOLD, 12));
 		setTitle("Encerrar Pedido");
 		setResizable(false);
@@ -94,7 +98,6 @@ public class JFpedidoEncerrado extends JFrame {
 		lblFormasDePagamento.setBounds(77, 118, 159, 24);
 		contentPane.add(lblFormasDePagamento);
 
-		JButton btnDinheiro = new JButton("Dinheiro");
 		btnDinheiro.setFont(new Font("Times New Roman", Font.BOLD, 11));
 		btnDinheiro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -104,7 +107,6 @@ public class JFpedidoEncerrado extends JFrame {
 		btnDinheiro.setBounds(10, 153, 95, 23);
 		contentPane.add(btnDinheiro);
 
-		JButton btnCarto = new JButton("Cart\u00E3o");
 		btnCarto.setFont(new Font("Times New Roman", Font.BOLD, 11));
 		btnCarto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -114,7 +116,6 @@ public class JFpedidoEncerrado extends JFrame {
 		btnCarto.setBounds(118, 153, 89, 23);
 		contentPane.add(btnCarto);
 
-		JButton btnCheque = new JButton("Cheque");
 		btnCheque.setFont(new Font("Times New Roman", Font.BOLD, 11));
 		btnCheque.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

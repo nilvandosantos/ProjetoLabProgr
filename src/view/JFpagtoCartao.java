@@ -60,7 +60,10 @@ public class JFpagtoCartao extends JFrame {
         this.indice_caixa = ind_caixa;
         this.indice_pedido = ind_pedido;
 		
-		setResizable(false);
+        JButton btnEncerra = new JButton("Encerra");
+        JButton btnCancela = new JButton("Cancela");
+		
+        setResizable(false);
 		setTitle("Cart\u00E3o");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 244, 219);
@@ -125,7 +128,6 @@ public class JFpagtoCartao extends JFrame {
 		
 		iniciar();
 		
-		JButton btnEncerra = new JButton("Encerra");
 		btnEncerra.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent arg0) {
@@ -220,7 +222,6 @@ public class JFpagtoCartao extends JFrame {
 		btnEncerra.setBounds(10, 122, 89, 23);
 		contentPane.add(btnEncerra);
 		
-		JButton btnCancela = new JButton("Cancela");
 		btnCancela.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();

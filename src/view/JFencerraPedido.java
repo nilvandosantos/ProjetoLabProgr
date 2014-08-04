@@ -41,6 +41,12 @@ public class JFencerraPedido extends JFrame {
 	 *  
 	 */
 	public JFencerraPedido() {
+		
+		JButton btnEncerrar = new JButton("Encerrar");
+		JButton btnCancelar = new JButton("Cancelar");
+		
+		setTitle("Encerra Pedido");
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 383, 183);
 		contentPane = new JPanel();
@@ -53,6 +59,7 @@ public class JFencerraPedido extends JFrame {
 		lblDigiteOCodigo.setFont(new Font("Times New Roman", Font.BOLD, 14));
 		lblDigiteOCodigo.setBounds(10, 11, 347, 32);
 		contentPane.add(lblDigiteOCodigo);
+		getRootPane().setDefaultButton(btnEncerrar);
 		
 		textFieldCodPed = new JTextField();
 		textFieldCodPed.setHorizontalAlignment(SwingConstants.CENTER);
@@ -60,7 +67,6 @@ public class JFencerraPedido extends JFrame {
 		contentPane.add(textFieldCodPed);
 		textFieldCodPed.setColumns(10);
 		
-		JButton btnEncerrar = new JButton("Encerrar");
 		btnEncerrar.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent arg0) {
@@ -127,7 +133,6 @@ public class JFencerraPedido extends JFrame {
 		btnEncerrar.setBounds(24, 90, 112, 23);
 		contentPane.add(btnEncerrar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();

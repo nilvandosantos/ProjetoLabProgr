@@ -80,22 +80,42 @@ public class JFcadastroProduto extends JFrame {
 			private void btnSalvarActionPerformed(ActionEvent arg0) {
 				String nome = textFieldNome.getText();
 				CadProduto cadastro = new CadProduto();
-				Produto novo = new Produto(textFieldNome.getText(),Double.parseDouble(textFieldPreco.getText()),textFieldDescrio.getText());
-				Validacao valida = new Validacao();
 				//Verifica se o campo esta vazio
-				if (valida.valida(textFieldNome.getText(),textFieldPreco.getText(),textFieldDescrio.getText())==true) {
-					//Adiciona o produto na lista
-					cadastro.adicionaProduto(novo);
-					cadastro.gravarProduto();
-					JOptionPane.showMessageDialog(null,
-							"Produto cadastrado com sucesso!\n\nNome: " + nome
+					
+				if (textFieldNome.getText().equals("")
+						|| textFieldPreco.getText().equals("")
+						|| textFieldDescrio.getText().equals("")) {
+					JOptionPane.showMessageDialog(JFcadastroProduto.this,
+							"Preencha o campo!", "Erro",
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					try {
+						if (Integer.parseInt(textFieldPreco.getText()) < 0) {
+							JOptionPane.showMessageDialog(JFcadastroProduto.this,
+									"Digite um valor de preço válido! (Use ponto no lugar de vírgula!)",
+									"Erro", JOptionPane.ERROR_MESSAGE);
+							textFieldPreco.setText("");
+							return;
+						}
+
+					} catch (NumberFormatException n) {
+						JOptionPane.showMessageDialog(null,
+								"Digite um valor de preço válido! (Use ponto no lugar de vírgula!)",
+								"Erro", JOptionPane.ERROR_MESSAGE);
+						textFieldPreco.setText("");
+						return;
+					}
+				}
+				
+				Produto novo = new Produto(textFieldNome.getText(),Double.parseDouble(textFieldPreco.getText()),textFieldDescrio.getText());
+				cadastro.adicionaProduto(novo);
+				cadastro.gravarProduto();
+				JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso!\n\nNome: " + nome
 									+ "\nCódigo: " + novo.getCodigo()
 									+ "\nSucesso");
-					dispose();
-				} else {
-					JOptionPane.showMessageDialog(null, "Preenchimento Obrigatorio");
+				dispose();
+
 				}
-			}
 		});
 		btnSalvar.setBounds(84, 210, 114, 23);
 		contentPane.add(btnSalvar);

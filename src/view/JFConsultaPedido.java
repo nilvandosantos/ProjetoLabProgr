@@ -43,6 +43,8 @@ public class JFConsultaPedido extends JFrame {
 		JButton btnCancelar = new JButton("Cancelar");
 		JButton btnAjuda = new JButton("?");
 		
+		setTitle("Consuta Pedido");
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 356, 173);
 		contentPane = new JPanel();

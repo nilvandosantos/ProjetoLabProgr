@@ -40,6 +40,10 @@ public class JFatualizaPedido extends JFrame {
 	
 	//CRIAÇÃO DA TELA ATUALIZAR PEDIDO
 	public JFatualizaPedido() {
+		
+		JButton btnAtualizar = new JButton("Atualizar");
+		JButton btnCancelar = new JButton("Cancelar");
+		
 		setTitle("Atualiza o Pedido");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 299, 191);
@@ -47,7 +51,8 @@ public class JFatualizaPedido extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		getRootPane().setDefaultButton(btnAtualizar);
+		
 		JLabel lblCodigoDoPedido = new JLabel("Codigo do pedido:");
 		lblCodigoDoPedido.setFont(new Font("Times New Roman", Font.PLAIN, 13));
 		lblCodigoDoPedido.setBounds(10, 25, 107, 14);
@@ -78,7 +83,6 @@ public class JFatualizaPedido extends JFrame {
 		lblQtd.setBounds(10, 75, 86, 14);
 		contentPane.add(lblQtd);
 
-		JButton btnAtualizar = new JButton("Atualizar");
 		btnAtualizar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int indice_caixa = 0;
@@ -324,7 +328,6 @@ public class JFatualizaPedido extends JFrame {
 		btnAtualizar.setBounds(10, 112, 107, 23);
 		contentPane.add(btnAtualizar);
 
-		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();

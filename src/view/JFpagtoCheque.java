@@ -54,7 +54,10 @@ public class JFpagtoCheque extends JFrame {
         indice_caixa = indice_cai;
         indice_pedido = indice_ped;
 		
-		setResizable(false);
+        JButton btnEncerrar = new JButton("Encerrar");
+        JButton btnCancelar = new JButton("Cancelar");
+		
+        setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 258, 206);
 		contentPane = new JPanel();
@@ -109,14 +112,8 @@ public class JFpagtoCheque extends JFrame {
 		
 		iniciar();
 		
-		JButton btnEncerrar = new JButton("Encerrar");
 		btnEncerrar.addActionListener(new ActionListener() {
-			
-
-			
-
-			
-
+		
 			public void actionPerformed(ActionEvent arg0) {
 				 boolean ok = true;
 
@@ -189,7 +186,6 @@ public class JFpagtoCheque extends JFrame {
 		btnEncerrar.setBounds(10, 131, 89, 23);
 		contentPane.add(btnEncerrar);
 		
-		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();

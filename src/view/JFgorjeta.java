@@ -28,6 +28,10 @@ public class JFgorjeta extends JFrame {
 	 * Cria a tela da gorgeta .
 	 */
 	public JFgorjeta() {
+		
+		JButton btnOk = new JButton("ok");
+		JButton btnCancelar = new JButton("Cancelar");
+		
 		setResizable(false);
 		setTitle("Gorjeta");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -36,6 +40,7 @@ public class JFgorjeta extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		getRootPane().setDefaultButton(btnOk);
 		
 		JLabel lblCodigoDoGarom = new JLabel("Codigo do Gar\u00E7om");
 		lblCodigoDoGarom.setFont(new Font("Times New Roman", Font.BOLD, 13));
@@ -48,7 +53,6 @@ public class JFgorjeta extends JFrame {
 		contentPane.add(textField);
 		textField.setColumns(10);
 		
-		JButton btnOk = new JButton("ok");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				int indice_garcom = 0;
@@ -99,7 +103,6 @@ public class JFgorjeta extends JFrame {
 		btnOk.setBounds(10, 71, 89, 23);
 		contentPane.add(btnOk);
 		
-		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				dispose();
