@@ -102,6 +102,7 @@ public class JFpedidoEncerrado extends JFrame {
 		btnDinheiro.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 	            new JFpagtoDinheiro(jFa_ser_fechado1, JFpedidoEncerrado.this, indice_caixa, indice_comanda).setVisible(true);
+	            dispose();
 			}
 		});
 		btnDinheiro.setBounds(10, 153, 95, 23);
@@ -111,6 +112,7 @@ public class JFpedidoEncerrado extends JFrame {
 		btnCarto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new JFpagtoCartao(jFa_ser_fechado1, JFpedidoEncerrado.this, indice_caixa, indice_comanda).setVisible(true);
+				dispose();
 			}
 		});
 		btnCarto.setBounds(118, 153, 89, 23);
@@ -120,6 +122,7 @@ public class JFpedidoEncerrado extends JFrame {
 		btnCheque.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 	            new JFpagtoCheque(jFa_ser_fechado1, JFpedidoEncerrado.this, indice_caixa, indice_comanda).setVisible(true);
+	            dispose();
 			}
 		});
 		btnCheque.setBounds(220, 153, 89, 23);

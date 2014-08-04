@@ -120,7 +120,7 @@ public class JFencerraPedido extends JFrame {
 			            if (achou) {
 
 			                new JFpedidoEncerrado(JFencerraPedido.this, indice_caixa, indice_pedido).setVisible(true);
-
+			                dispose();
 			            } else {
 
 			                JOptionPane.showMessageDialog(JFencerraPedido.this, "Pedido não encontrado!", "Erro", JOptionPane.ERROR_MESSAGE);
